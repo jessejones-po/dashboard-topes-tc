@@ -317,12 +317,28 @@
 
           setStep(3, 'done');
 
-          // Step 4: Trigger workflow
+          // Step 4: Trigger workflow dispatch to regenerate dashboards
           setStep(4, 'active');
           setProgressBar(85);
 
-          // Small delay to confirm
-          await delay(1000);
+          var dispatchResp = await fetch(
+            'https://api.github.com/repos/' + REPO_OWNER + '/' + REPO_NAME + '/actions/workflows/regenerate-dashboards.yml/dispatches',
+            {
+              method: 'POST',
+              headers: {
+                'Authorization': 'Bearer ' + token,
+                'Content-Type': 'application/json',
+                'Accept': 'application/vnd.github.v3+json'
+              },
+              body: JSON.stringify({ ref: BRANCH })
+            }
+          );
+
+          if (!dispatchResp.ok && dispatchResp.status !== 204) {
+            console.warn('Workflow dispatch failed:', dispatchResp.status);
+          }
+
+          await delay(2000);
           setProgressBar(100);
           setStep(4, 'done');
 
