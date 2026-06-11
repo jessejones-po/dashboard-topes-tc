@@ -177,7 +177,7 @@ function buildTransactionCounts(transacciones) {
 }
 
 // --- Generación HTML ---
-function generateEjecutivoHTML(tablaData, fechas, transactionCounts) {
+function generateEjecutivoHTML(tablaData, fechas, transactionCounts, horaTopes) {
   const totalServicios = tablaData.reduce((sum, row) => sum + fechas.reduce((s, f) => s + (row.porFecha[f] ? row.porFecha[f].agendados : 0), 0), 0);
 
   const topesGlobalesPorFecha = {};
@@ -808,7 +808,7 @@ function main() {
     }
   }
 
-  const html = generateEjecutivoHTML(tablaData, fechas, transactionCounts);
+  const html = generateEjecutivoHTML(tablaData, fechas, transactionCounts, horaTopes);
   const outputDir = path.dirname(OUTPUT_PATH);
   if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, { recursive: true });
   fs.writeFileSync(OUTPUT_PATH, html, 'utf-8');
