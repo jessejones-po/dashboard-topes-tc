@@ -145,7 +145,7 @@
         <li>Ingresa el token de GitHub proporcionado por el equipo</li>
         <li>Selecciona el archivo CSV (ej. <code>tc-davibank-ordenes-20260601-20260610.csv</code>)</li>
         <li>Click en "Actualizar Dashboards"</li>
-        <li>Espera ~1 minuto mientras GitHub regenera los dashboards</li>
+        <li>Espera ~3-5 minutos mientras GitHub regenera y publica los dashboards</li>
         <li>Recarga la página del dashboard para ver los datos nuevos</li>
       </ol>
     </div>
@@ -329,7 +329,7 @@
           // Success!
           showResult('success', '✅ Dashboards actualizándose',
             'El archivo se subió correctamente. GitHub Actions está regenerando los dashboards. ' +
-            'En aproximadamente 1-2 minutos, recarga las páginas para ver los datos actualizados.' +
+            'En aproximadamente 3-5 minutos, recarga las páginas para ver los datos actualizados.' +
             '<br><br><strong>Registros:</strong> ' + validation.rowCount + ' filas • <strong>Archivo:</strong> ' + selectedFile.name
           );
           resultActions.innerHTML = '<a href="index.html" target="_blank">📊 Ver Dashboard Principal</a>' +
