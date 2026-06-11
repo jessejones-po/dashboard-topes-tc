@@ -1,0 +1,101 @@
+{
+  "periodos": [
+    {
+      "desde": "2026-06-01",
+      "hasta": "2026-06-02",
+      "topeMensual": 2300,
+      "diasMes": 30,
+      "distribucion": {
+        "Otras marcas": {
+          "pctProducto": 0.582,
+          "categorias": {
+            "CLASICA": 0.14,
+            "ORO": 0.13,
+            "PLATINUM": 0.33,
+            "SIGNATURE": 0.06,
+            "INFINITE": 0.13,
+            "BLACK": 0.08,
+            "EMPRESARIAL": 0.13
+          }
+        },
+        "Metal": {
+          "pctProducto": 0.01,
+          "categorias": { "METAL": 1.00 }
+        },
+        "Terpel": {
+          "pctProducto": 0.02,
+          "categorias": { "CLASICA": 0.50, "ORO": 0.50 }
+        },
+        "Cencosud": {
+          "pctProducto": 0.261,
+          "categorias": {
+            "CLASICA": 0.30,
+            "ORO": 0.43,
+            "PLATINUM": 0.20,
+            "INFINITE": 0.06
+          }
+        },
+        "Pricesmart": {
+          "pctProducto": 0.127,
+          "categorias": {
+            "ORO": 0.62,
+            "PLATINUM": 0.20,
+            "SIGNATURE": 0.17
+          }
+        }
+      }
+    },
+    {
+      "desde": "2026-06-03",
+      "hasta": "2026-06-05",
+      "topeMensual": 10000,
+      "diasMes": 30,
+      "distribucion": "misma"
+    },
+    {
+      "desde": "2026-06-06",
+      "hasta": "2026-12-31",
+      "topeMensual": 6000,
+      "diasMes": 30,
+      "distribucion": {
+        "Otras marcas": {
+          "pctProducto": 0.66,
+          "categorias": {
+            "CLASICA": 0.03,
+            "ORO": 0.09,
+            "PLATINUM": 0.36,
+            "SIGNATURE": 0.06,
+            "INFINITE": 0.23,
+            "BLACK": 0.18,
+            "EMPRESARIAL": 0.05
+          }
+        },
+        "Metal": {
+          "pctProducto": 0.02,
+          "categorias": { "METAL": 1.00 }
+        },
+        "Terpel": {
+          "pctProducto": 0.04,
+          "categorias": { "CLASICA": 0.50, "ORO": 0.50 }
+        },
+        "Cencosud": {
+          "pctProducto": 0.19,
+          "categorias": {
+            "CLASICA": 0.11,
+            "ORO": 0.21,
+            "PLATINUM": 0.26,
+            "INFINITE": 0.42
+          }
+        },
+        "Pricesmart": {
+          "pctProducto": 0.09,
+          "categorias": {
+            "ORO": 0.22,
+            "PLATINUM": 0.22,
+            "SIGNATURE": 0.56
+          }
+        }
+      }
+    }
+  ]
+}

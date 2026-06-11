@@ -1,0 +1,1 @@
+{"name":"dashboard-topes-tc","version":"2.0.0","private":true,"description":"Dashboard de Topes TC Davibank con autoservicio de cargue CSV","scripts":{"generate":"node scripts/generate-dashboard-topes.js && node scripts/generate-ejecutivo.js","generate:dashboard":"node scripts/generate-dashboard-topes.js","generate:ejecutivo":"node scripts/generate-ejecutivo.js"}}
