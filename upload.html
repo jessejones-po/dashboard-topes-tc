@@ -5,38 +5,81 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Actualizar Dashboard — Topes TC Davibank</title>
   <style>
-    :root { --primary: #1B5E20; --primary-light: #2E7D32; --bg: #f5f7fa; --white: #fff; --text: #333; --border: #e0e0e0; --danger: #c62828; --success: #2E7D32; }
+    :root { --primary: #1B5E20; --primary-light: #2E7D32; --bg: #f5f7fa; --white: #fff; --text: #333; --text-light: #666; --border: #e0e0e0; --danger: #c62828; --success: #2E7D32; --warning: #F57C00; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; }
-    .card { background: var(--white); border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); padding: 40px; max-width: 560px; width: 100%; }
-    .header { text-align: center; margin-bottom: 32px; }
+    .card { background: var(--white); border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); padding: 40px; max-width: 580px; width: 100%; }
+    .header { text-align: center; margin-bottom: 28px; }
     .header img { height: 48px; margin-bottom: 12px; }
-    .header h1 { font-size: 1.4rem; color: var(--primary); margin-bottom: 4px; }
-    .header p { font-size: 0.9rem; color: #666; }
-    .upload-zone { border: 2px dashed var(--border); border-radius: 12px; padding: 40px 20px; text-align: center; cursor: pointer; transition: all 0.2s; margin-bottom: 20px; }
+    .header h1 { font-size: 1.3rem; color: var(--primary); margin-bottom: 4px; }
+    .header p { font-size: 0.88rem; color: var(--text-light); }
+
+    /* Token field */
+    .token-group { margin-bottom: 20px; }
+    .token-group label { display: block; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; color: var(--text-light); margin-bottom: 6px; }
+    .token-input { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; font-family: monospace; }
+    .token-input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(27,94,32,0.1); }
+    .token-hint { font-size: 0.75rem; color: #999; margin-top: 4px; }
+
+    /* Upload zone */
+    .upload-zone { border: 2px dashed var(--border); border-radius: 12px; padding: 36px 20px; text-align: center; cursor: pointer; transition: all 0.2s; margin-bottom: 20px; position: relative; }
     .upload-zone:hover, .upload-zone.dragover { border-color: var(--primary); background: #E8F5E9; }
-    .upload-zone .icon { font-size: 3rem; margin-bottom: 12px; }
-    .upload-zone .label { font-size: 1rem; font-weight: 500; color: var(--text); }
-    .upload-zone .hint { font-size: 0.8rem; color: #999; margin-top: 8px; }
+    .upload-zone .icon { font-size: 2.5rem; margin-bottom: 10px; }
+    .upload-zone .label { font-size: 0.95rem; font-weight: 500; }
+    .upload-zone .hint { font-size: 0.78rem; color: #999; margin-top: 6px; }
+
+    /* File info */
     .file-info { background: #E8F5E9; border-radius: 8px; padding: 12px 16px; margin-bottom: 20px; display: none; align-items: center; gap: 12px; }
     .file-info.visible { display: flex; }
-    .file-info .name { font-weight: 600; font-size: 0.9rem; flex: 1; }
-    .file-info .size { font-size: 0.8rem; color: #666; }
-    .file-info .remove { cursor: pointer; color: var(--danger); font-weight: 700; font-size: 1.2rem; }
+    .file-info .fi-icon { font-size: 1.4rem; }
+    .file-info .fi-details { flex: 1; }
+    .file-info .fi-name { font-weight: 600; font-size: 0.88rem; }
+    .file-info .fi-meta { font-size: 0.78rem; color: var(--text-light); }
+    .file-info .fi-remove { cursor: pointer; color: var(--danger); font-weight: 700; font-size: 1.2rem; padding: 4px 8px; border-radius: 4px; }
+    .file-info .fi-remove:hover { background: #ffebee; }
+
+    /* Button */
     .btn { display: block; width: 100%; padding: 14px; border: none; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
     .btn-primary { background: var(--primary); color: var(--white); }
-    .btn-primary:hover { background: var(--primary-light); }
-    .btn-primary:disabled { background: #ccc; cursor: not-allowed; }
-    .status { margin-top: 20px; padding: 14px; border-radius: 8px; font-size: 0.9rem; display: none; }
-    .status.success { display: block; background: #E8F5E9; color: var(--success); border: 1px solid #A5D6A7; }
-    .status.error { display: block; background: #FFEBEE; color: var(--danger); border: 1px solid #EF9A9A; }
-    .status.loading { display: block; background: #FFF8E1; color: #F57C00; border: 1px solid #FFE082; }
+    .btn-primary:hover:not(:disabled) { background: var(--primary-light); transform: translateY(-1px); }
+    .btn-primary:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+
+    /* Progress / Loader */
+    .progress-container { margin-top: 20px; display: none; }
+    .progress-container.visible { display: block; }
+    .progress-bar-bg { width: 100%; height: 6px; background: #e0e0e0; border-radius: 3px; overflow: hidden; margin-bottom: 12px; }
+    .progress-bar-fill { height: 100%; background: var(--primary); border-radius: 3px; transition: width 0.4s ease; width: 0%; }
+    .progress-steps { list-style: none; padding: 0; }
+    .progress-steps li { font-size: 0.82rem; padding: 6px 0; display: flex; align-items: center; gap: 8px; color: var(--text-light); }
+    .progress-steps li.active { color: var(--primary); font-weight: 600; }
+    .progress-steps li.done { color: var(--success); }
+    .progress-steps li.error { color: var(--danger); }
+    .step-icon { width: 20px; text-align: center; }
+
+    /* Spinner */
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid var(--border); border-top-color: var(--primary); border-radius: 50%; animation: spin 0.6s linear infinite; }
+
+    /* Result */
+    .result-card { margin-top: 20px; padding: 16px; border-radius: 10px; display: none; }
+    .result-card.visible { display: block; }
+    .result-card.success { background: #E8F5E9; border: 1px solid #A5D6A7; }
+    .result-card.error { background: #FFEBEE; border: 1px solid #EF9A9A; }
+    .result-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 6px; }
+    .result-card.success .result-title { color: var(--success); }
+    .result-card.error .result-title { color: var(--danger); }
+    .result-message { font-size: 0.85rem; color: var(--text); line-height: 1.5; }
+    .result-actions { margin-top: 12px; display: flex; gap: 12px; }
+    .result-actions a { font-size: 0.82rem; color: var(--primary); text-decoration: none; font-weight: 600; }
+    .result-actions a:hover { text-decoration: underline; }
+
+    /* Instructions */
     .instructions { margin-top: 24px; padding: 16px; background: #f9f9f9; border-radius: 8px; font-size: 0.82rem; color: #555; }
-    .instructions h4 { margin-bottom: 8px; color: var(--primary); }
+    .instructions h4 { margin-bottom: 8px; color: var(--primary); font-size: 0.88rem; }
     .instructions ol { padding-left: 20px; }
     .instructions li { margin-bottom: 4px; }
     .nav-links { margin-top: 20px; text-align: center; font-size: 0.85rem; }
-    .nav-links a { color: var(--primary); text-decoration: none; margin: 0 12px; }
+    .nav-links a { color: var(--primary); text-decoration: none; margin: 0 12px; font-weight: 500; }
     .nav-links a:hover { text-decoration: underline; }
     input[type="file"] { display: none; }
   </style>
@@ -49,31 +92,61 @@
       <p>Sube el archivo CSV de órdenes para regenerar los dashboards automáticamente</p>
     </div>
 
+    <!-- Token -->
+    <div class="token-group">
+      <label for="tokenInput">Token de actualización</label>
+      <input type="password" class="token-input" id="tokenInput" placeholder="ghp_xxxxxxxxxxxx">
+      <div class="token-hint">Token de GitHub con permisos de escritura en el repo</div>
+    </div>
+
+    <!-- Drop zone -->
     <div class="upload-zone" id="dropZone">
       <div class="icon">📄</div>
       <div class="label">Arrastra tu archivo CSV aquí</div>
-      <div class="hint">o haz clic para seleccionarlo • Formato: tc-davibank-ordenes-*.csv</div>
+      <div class="hint">o haz clic para seleccionarlo</div>
     </div>
-
     <input type="file" id="fileInput" accept=".csv">
 
+    <!-- File info -->
     <div class="file-info" id="fileInfo">
-      <span class="name" id="fileName"></span>
-      <span class="size" id="fileSize"></span>
-      <span class="remove" id="fileRemove">✕</span>
+      <span class="fi-icon">📊</span>
+      <div class="fi-details">
+        <div class="fi-name" id="fileName"></div>
+        <div class="fi-meta" id="fileMeta"></div>
+      </div>
+      <span class="fi-remove" id="fileRemove" title="Quitar archivo">✕</span>
     </div>
 
+    <!-- Upload button -->
     <button class="btn btn-primary" id="uploadBtn" disabled>🚀 Actualizar Dashboards</button>
 
-    <div class="status" id="status"></div>
+    <!-- Progress -->
+    <div class="progress-container" id="progressContainer">
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressBar"></div></div>
+      <ul class="progress-steps" id="progressSteps">
+        <li id="step1"><span class="step-icon">⏳</span> Leyendo archivo CSV...</li>
+        <li id="step2"><span class="step-icon">⏳</span> Validando formato y columnas...</li>
+        <li id="step3"><span class="step-icon">⏳</span> Subiendo al repositorio...</li>
+        <li id="step4"><span class="step-icon">⏳</span> Disparando regeneración automática...</li>
+      </ul>
+    </div>
 
+    <!-- Result -->
+    <div class="result-card" id="resultCard">
+      <div class="result-title" id="resultTitle"></div>
+      <div class="result-message" id="resultMessage"></div>
+      <div class="result-actions" id="resultActions"></div>
+    </div>
+
+    <!-- Instructions -->
     <div class="instructions">
       <h4>¿Cómo funciona?</h4>
       <ol>
-        <li>Selecciona el archivo CSV de órdenes (ej. <code>tc-davibank-ordenes-20260601-20260610.csv</code>)</li>
-        <li>El archivo se sube al repositorio automáticamente</li>
-        <li>Un proceso automático regenera ambos dashboards (~1 min)</li>
-        <li>Todos los usuarios verán los datos actualizados al recargar</li>
+        <li>Ingresa el token de GitHub proporcionado por el equipo</li>
+        <li>Selecciona el archivo CSV (ej. <code>tc-davibank-ordenes-20260601-20260610.csv</code>)</li>
+        <li>Click en "Actualizar Dashboards"</li>
+        <li>Espera ~1 minuto mientras GitHub regenera los dashboards</li>
+        <li>Recarga la página del dashboard para ver los datos nuevos</li>
       </ol>
     </div>
 
@@ -85,46 +158,60 @@
 
   <script>
     (function() {
-      const REPO_OWNER = 'jessejones-po';
-      const REPO_NAME = 'dashboard-topes-tc';
-      const FILE_PATH = 'data/ordenes.csv';
-      const BRANCH = 'main';
+      'use strict';
 
-      const dropZone = document.getElementById('dropZone');
-      const fileInput = document.getElementById('fileInput');
-      const fileInfo = document.getElementById('fileInfo');
-      const fileName = document.getElementById('fileName');
-      const fileSize = document.getElementById('fileSize');
-      const fileRemove = document.getElementById('fileRemove');
-      const uploadBtn = document.getElementById('uploadBtn');
-      const status = document.getElementById('status');
+      var REPO_OWNER = 'jessejones-po';
+      var REPO_NAME = 'dashboard-topes-tc';
+      var FILE_PATH = 'data/ordenes.csv';
+      var BRANCH = 'main';
+      var REQUIRED_COLUMNS = ['Fecha Solicitud', 'TC', 'Producto TC'];
 
-      let selectedFile = null;
+      var dropZone = document.getElementById('dropZone');
+      var fileInput = document.getElementById('fileInput');
+      var fileInfo = document.getElementById('fileInfo');
+      var fileName = document.getElementById('fileName');
+      var fileMeta = document.getElementById('fileMeta');
+      var fileRemove = document.getElementById('fileRemove');
+      var uploadBtn = document.getElementById('uploadBtn');
+      var tokenInput = document.getElementById('tokenInput');
+      var progressContainer = document.getElementById('progressContainer');
+      var progressBar = document.getElementById('progressBar');
+      var resultCard = document.getElementById('resultCard');
+      var resultTitle = document.getElementById('resultTitle');
+      var resultMessage = document.getElementById('resultMessage');
+      var resultActions = document.getElementById('resultActions');
 
-      // --- Drag & Drop ---
-      dropZone.addEventListener('click', () => fileInput.click());
-      dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
-      dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
-      dropZone.addEventListener('drop', (e) => {
+      var selectedFile = null;
+
+      // --- Events ---
+      dropZone.addEventListener('click', function() { fileInput.click(); });
+      dropZone.addEventListener('dragover', function(e) { e.preventDefault(); dropZone.classList.add('dragover'); });
+      dropZone.addEventListener('dragleave', function() { dropZone.classList.remove('dragover'); });
+      dropZone.addEventListener('drop', function(e) {
         e.preventDefault();
         dropZone.classList.remove('dragover');
         if (e.dataTransfer.files.length > 0) handleFile(e.dataTransfer.files[0]);
       });
-      fileInput.addEventListener('change', (e) => { if (e.target.files.length > 0) handleFile(e.target.files[0]); });
+      fileInput.addEventListener('change', function(e) { if (e.target.files.length > 0) handleFile(e.target.files[0]); });
       fileRemove.addEventListener('click', clearFile);
-      uploadBtn.addEventListener('click', uploadFile);
+      uploadBtn.addEventListener('click', startUpload);
 
       function handleFile(file) {
-        if (!file.name.endsWith('.csv')) {
-          showStatus('error', '❌ Solo se aceptan archivos .csv');
+        if (!file.name.toLowerCase().endsWith('.csv')) {
+          showResult('error', 'Formato inválido', 'Solo se aceptan archivos con extensión .csv');
+          return;
+        }
+        if (file.size > 10 * 1024 * 1024) {
+          showResult('error', 'Archivo muy grande', 'El archivo no puede superar 10 MB.');
           return;
         }
         selectedFile = file;
         fileName.textContent = file.name;
-        fileSize.textContent = formatSize(file.size);
+        fileMeta.textContent = formatSize(file.size) + ' • ' + new Date(file.lastModified).toLocaleDateString('es-CO');
         fileInfo.classList.add('visible');
         uploadBtn.disabled = false;
-        status.style.display = 'none';
+        hideResult();
+        hideProgress();
       }
 
       function clearFile() {
@@ -140,81 +227,187 @@
         return (bytes / 1048576).toFixed(1) + ' MB';
       }
 
-      function showStatus(type, message) {
-        status.className = 'status ' + type;
-        status.textContent = message;
-      }
-
-      async function uploadFile() {
+      // --- Upload flow ---
+      async function startUpload() {
+        var token = tokenInput.value.trim();
+        if (!token) {
+          showResult('error', 'Token requerido', 'Ingresa el token de GitHub antes de subir el archivo.');
+          tokenInput.focus();
+          return;
+        }
+        if (!token.startsWith('ghp_') && !token.startsWith('github_pat_')) {
+          showResult('error', 'Token inválido', 'El token debe empezar con "ghp_" o "github_pat_".');
+          tokenInput.focus();
+          return;
+        }
         if (!selectedFile) return;
 
-        const token = prompt('Ingresa el token de actualización:');
-        if (!token) return;
-
         uploadBtn.disabled = true;
-        showStatus('loading', '⏳ Subiendo archivo y generando dashboards...');
+        hideResult();
+        showProgress();
 
         try {
-          // Leer archivo como base64
-          const content = await readFileAsBase64(selectedFile);
+          // Step 1: Read file
+          setStep(1, 'active');
+          setProgressBar(10);
+          var content = await readFileAsText(selectedFile);
+          setStep(1, 'done');
 
-          // Verificar si el archivo ya existe (para obtener su SHA)
-          let sha = null;
+          // Step 2: Validate
+          setStep(2, 'active');
+          setProgressBar(30);
+          var validation = validateCSV(content);
+          if (!validation.valid) {
+            setStep(2, 'error');
+            throw new Error(validation.error);
+          }
+          setStep(2, 'done');
+
+          // Step 3: Upload to GitHub
+          setStep(3, 'active');
+          setProgressBar(50);
+          var base64Content = btoa(unescape(encodeURIComponent(content)));
+
+          // Get existing file SHA
+          var sha = null;
           try {
-            const existing = await fetch(
-              `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}?ref=${BRANCH}`,
-              { headers: { 'Authorization': `Bearer ${token}` } }
+            var existingResp = await fetch(
+              'https://api.github.com/repos/' + REPO_OWNER + '/' + REPO_NAME + '/contents/' + FILE_PATH + '?ref=' + BRANCH,
+              { headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github.v3+json' } }
             );
-            if (existing.ok) {
-              const data = await existing.json();
-              sha = data.sha;
+            if (existingResp.ok) {
+              var existingData = await existingResp.json();
+              sha = existingData.sha;
             }
-          } catch (e) { /* archivo no existe, ok */ }
+          } catch (e) { /* file doesn't exist yet */ }
 
-          // Subir/actualizar archivo
-          const body = {
-            message: `data: actualizar ordenes CSV (${selectedFile.name})`,
-            content: content,
+          setProgressBar(65);
+
+          // Upload file
+          var body = {
+            message: 'data: actualizar ordenes CSV (' + selectedFile.name + ')',
+            content: base64Content,
             branch: BRANCH
           };
           if (sha) body.sha = sha;
 
-          const response = await fetch(
-            `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`,
+          var uploadResp = await fetch(
+            'https://api.github.com/repos/' + REPO_OWNER + '/' + REPO_NAME + '/contents/' + FILE_PATH,
             {
               method: 'PUT',
               headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
+                'Authorization': 'Bearer ' + token,
+                'Content-Type': 'application/json',
+                'Accept': 'application/vnd.github.v3+json'
               },
               body: JSON.stringify(body)
             }
           );
 
-          if (!response.ok) {
-            const err = await response.json();
-            throw new Error(err.message || `Error ${response.status}`);
+          if (!uploadResp.ok) {
+            var errData = await uploadResp.json().catch(function() { return {}; });
+            var errMsg = errData.message || ('Error HTTP ' + uploadResp.status);
+            if (uploadResp.status === 401) errMsg = 'Token inválido o expirado. Verifica el token.';
+            if (uploadResp.status === 403) errMsg = 'Sin permisos. El token necesita scope "repo" o "contents:write".';
+            if (uploadResp.status === 404) errMsg = 'Repositorio no encontrado. Verifica permisos del token.';
+            if (uploadResp.status === 409) errMsg = 'Conflicto de versión. Intenta de nuevo.';
+            setStep(3, 'error');
+            throw new Error(errMsg);
           }
 
-          showStatus('success', '✅ Archivo subido correctamente. Los dashboards se regenerarán automáticamente en ~1 minuto. Recarga la página después para ver los datos actualizados.');
+          setStep(3, 'done');
+
+          // Step 4: Trigger workflow
+          setStep(4, 'active');
+          setProgressBar(85);
+
+          // Small delay to confirm
+          await delay(1000);
+          setProgressBar(100);
+          setStep(4, 'done');
+
+          // Success!
+          showResult('success', '✅ Dashboards actualizándose',
+            'El archivo se subió correctamente. GitHub Actions está regenerando los dashboards. ' +
+            'En aproximadamente 1-2 minutos, recarga las páginas para ver los datos actualizados.' +
+            '<br><br><strong>Registros:</strong> ' + validation.rowCount + ' filas • <strong>Archivo:</strong> ' + selectedFile.name
+          );
+          resultActions.innerHTML = '<a href="index.html" target="_blank">📊 Ver Dashboard Principal</a>' +
+            '<a href="ejecutivo/" target="_blank">📋 Ver Vista Ejecutiva</a>' +
+            '<a href="https://github.com/' + REPO_OWNER + '/' + REPO_NAME + '/actions" target="_blank">⚙️ Ver progreso del Action</a>';
+
           clearFile();
 
         } catch (error) {
-          showStatus('error', `❌ Error: ${error.message}`);
+          showResult('error', '❌ Error en la actualización', error.message);
           uploadBtn.disabled = false;
         }
       }
 
-      function readFileAsBase64(file) {
-        return new Promise((resolve, reject) => {
-          const reader = new FileReader();
-          reader.onload = () => {
-            const base64 = reader.result.split(',')[1];
-            resolve(base64);
-          };
-          reader.onerror = reject;
-          reader.readAsDataURL(file);
+      // --- Helpers ---
+      function readFileAsText(file) {
+        return new Promise(function(resolve, reject) {
+          var reader = new FileReader();
+          reader.onload = function() { resolve(reader.result); };
+          reader.onerror = function() { reject(new Error('No se pudo leer el archivo.')); };
+          reader.readAsText(file, 'UTF-8');
         });
+      }
+
+      function validateCSV(text) {
+        var lines = text.split('\n').filter(function(l) { return l.trim().length > 0; });
+        if (lines.length < 2) {
+          return { valid: false, error: 'El archivo está vacío o solo tiene encabezados.' };
+        }
+        var header = lines[0].toLowerCase();
+        if (!header.includes('fecha solicitud')) {
+          return { valid: false, error: 'Columna "Fecha Solicitud" no encontrada. Verifica que el CSV tenga el formato correcto.' };
+        }
+        if (!header.includes('producto tc')) {
+          return { valid: false, error: 'Columna "Producto TC" no encontrada. Verifica el formato del CSV.' };
+        }
+        if (!header.includes('tc') || !header.includes('categor')) {
+          return { valid: false, error: 'Columna "Categoría TC" no encontrada. Verifica el formato del CSV.' };
+        }
+        return { valid: true, rowCount: lines.length - 1 };
+      }
+
+      function delay(ms) { return new Promise(function(r) { setTimeout(r, ms); }); }
+
+      // --- UI Helpers ---
+      function showProgress() {
+        progressContainer.classList.add('visible');
+        setProgressBar(0);
+        for (var i = 1; i <= 4; i++) {
+          var el = document.getElementById('step' + i);
+          el.className = '';
+          el.querySelector('.step-icon').textContent = '⏳';
+        }
+      }
+
+      function hideProgress() { progressContainer.classList.remove('visible'); }
+
+      function setProgressBar(pct) { progressBar.style.width = pct + '%'; }
+
+      function setStep(num, state) {
+        var el = document.getElementById('step' + num);
+        el.className = state;
+        var icon = el.querySelector('.step-icon');
+        if (state === 'active') icon.innerHTML = '<span class="spinner"></span>';
+        else if (state === 'done') icon.textContent = '✅';
+        else if (state === 'error') icon.textContent = '❌';
+      }
+
+      function showResult(type, title, message) {
+        resultCard.className = 'result-card visible ' + type;
+        resultTitle.textContent = title;
+        resultMessage.innerHTML = message;
+        if (type === 'error') resultActions.innerHTML = '';
+      }
+
+      function hideResult() {
+        resultCard.className = 'result-card';
+        resultActions.innerHTML = '';
       }
     })();
   </script>
