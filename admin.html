@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configurar Topes — Dashboard TC Davibank</title>
+  <style>
+    :root { --primary: #1B5E20; --primary-light: #2E7D32; --bg: #f5f7fa; --white: #fff; --text: #333; --text-light: #666; --border: #e0e0e0; --danger: #c62828; --success: #2E7D32; --warning: #F57C00; --accent: #1565C0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; padding: 0; }
+    .header { background: var(--primary); color: var(--white); padding: 20px 32px; display: flex; align-items: center; gap: 16px; }
+    .header img { height: 42px; }
+    .header h1 { font-size: 1.3rem; font-weight: 600; }
+    .header p { font-size: 0.85rem; opacity: 0.85; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 24px; }
+
+    /* Token */
+    .token-bar { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .token-bar label { font-size: 0.82rem; font-weight: 600; white-space: nowrap; }
+    .token-bar input { flex: 1; min-width: 200px; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; font-family: monospace; font-size: 0.85rem; }
+    .token-bar .btn-load { padding: 8px 16px; background: var(--accent); color: var(--white); border: none; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.85rem; }
+    .token-bar .btn-load:hover { opacity: 0.9; }
+
+    /* Actions bar */
+    .actions-bar { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+    .btn { padding: 10px 18px; border: none; border-radius: 8px; font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+    .btn-add { background: var(--primary); color: var(--white); }
+    .btn-add:hover { background: var(--primary-light); }
+    .btn-dup { background: #E8F5E9; color: var(--primary); border: 1px solid #A5D6A7; }
+    .btn-dup:hover { background: #C8E6C9; }
+    .btn-save { background: var(--primary); color: var(--white); padding: 12px 28px; font-size: 1rem; }
+    .btn-save:hover:not(:disabled) { background: var(--primary-light); }
+    .btn-save:disabled { background: #ccc; cursor: not-allowed; }
+    .btn-danger { background: #FFEBEE; color: var(--danger); border: 1px solid #EF9A9A; }
+    .btn-danger:hover { background: #FFCDD2; }
+
+    /* Period card */
+    .period-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 20px; overflow: hidden; }
+    .period-header { background: #E8F5E9; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .period-header .period-title { font-weight: 700; color: var(--primary); font-size: 0.95rem; }
+    .period-header .period-actions { display: flex; gap: 8px; }
+    .period-header .btn-sm { padding: 5px 12px; font-size: 0.78rem; border-radius: 5px; }
+    .period-body { padding: 20px; }
+    .period-fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 16px; }
+    .field { display: flex; flex-direction: column; gap: 4px; }
+    .field label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--text-light); }
+    .field input, .field select { padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 0.9rem; }
+    .field input:focus, .field select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px rgba(27,94,32,0.1); }
+    .field .help { font-size: 0.7rem; color: #999; }
+
+    /* Distribution table */
+    .dist-section { margin-top: 12px; }
+    .dist-section h4 { font-size: 0.88rem; color: var(--primary); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+    .dist-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    .dist-table th { background: #f0f4f0; padding: 8px 10px; text-align: left; font-weight: 600; color: var(--text); border-bottom: 2px solid var(--border); }
+    .dist-table td { padding: 6px 10px; border-bottom: 1px solid #f0f0f0; }
+    .dist-table input { width: 70px; padding: 4px 6px; border: 1px solid var(--border); border-radius: 4px; font-size: 0.82rem; text-align: right; }
+    .dist-table input:focus { border-color: var(--primary); outline: none; }
+    .dist-table .prod-row { background: #fafffe; font-weight: 600; }
+    .dist-table .cat-row td:first-child { padding-left: 28px; }
+    .dist-table .tope-preview { font-weight: 700; color: var(--primary); }
+    .dist-table .pct-warning { color: var(--warning); font-weight: 600; font-size: 0.75rem; }
+    .dist-table .pct-ok { color: var(--success); font-size: 0.75rem; }
+    .btn-add-prod { margin-top: 8px; padding: 6px 14px; font-size: 0.8rem; background: #f0f4f0; border: 1px dashed var(--border); border-radius: 6px; cursor: pointer; color: var(--primary); }
+    .btn-add-prod:hover { background: #E8F5E9; }
+
+    /* Misma checkbox */
+    .misma-toggle { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+    .misma-toggle input { width: 18px; height: 18px; }
+    .misma-toggle label { font-size: 0.88rem; font-weight: 500; }
+
+    /* Status */
+    .status-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--white); border-top: 1px solid var(--border); padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; z-index: 100; box-shadow: 0 -2px 8px rgba(0,0,0,0.05); }
+    .status-bar .status-msg { font-size: 0.85rem; }
+    .status-bar .status-msg.success { color: var(--success); }
+    .status-bar .status-msg.error { color: var(--danger); }
+    .status-bar .status-msg.loading { color: var(--warning); }
+
+    /* Nav */
+    .nav-links { text-align: center; padding: 20px; font-size: 0.85rem; margin-bottom: 60px; }
+    .nav-links a { color: var(--primary); text-decoration: none; margin: 0 12px; font-weight: 500; }
+    .nav-links a:hover { text-decoration: underline; }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spinner-sm { display: inline-block; width: 14px; height: 14px; border: 2px solid var(--border); border-top-color: var(--primary); border-radius: 50%; animation: spin 0.6s linear infinite; vertical-align: middle; margin-right: 6px; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="logo_sb_.png" alt="Servicios Bolívar">
+    <div>
+      <h1>⚙️ Configurar Topes y Distribución</h1>
+      <p>Edita los topes mensuales y porcentajes por producto/categoría para cada período</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="token-bar">
+      <label>🔑 Token:</label>
+      <input type="password" id="tokenInput" placeholder="ghp_xxxxxxxxxxxx">
+      <button class="btn-load" id="btnLoad">Cargar config actual</button>
+    </div>
+
+    <div class="actions-bar">
+      <button class="btn btn-add" id="btnAddPeriod">+ Agregar período</button>
+      <button class="btn btn-dup" id="btnDupPeriod">📋 Duplicar último</button>
+    </div>
+
+    <div id="periodsContainer"></div>
+
+    <div class="nav-links">
+      <a href="index.html">📊 Dashboard Principal</a>
+      <a href="ejecutivo/">📋 Vista Ejecutiva</a>
+      <a href="upload.html">📁 Cargar CSV</a>
+    </div>
+  </div>
+
+  <div class="status-bar">
+    <span class="status-msg" id="statusMsg">Carga la configuración actual para empezar a editar</span>
+    <button class="btn btn-save" id="btnSave" disabled>💾 Guardar cambios</button>
+  </div>
+
+  <script>
+    (function() {
+      'use strict';
+
+      var REPO_OWNER = 'jessejones-po';
+      var REPO_NAME = 'dashboard-topes-tc';
+      var CONFIG_PATH = 'topes-config.json';
+      var BRANCH = 'main';
+
+      var PRODUCTOS_DEFAULT = ['Otras marcas', 'Metal', 'Terpel', 'Cencosud', 'Pricesmart'];
+      var CATEGORIAS_DEFAULT = ['CLASICA', 'ORO', 'PLATINUM', 'SIGNATURE', 'INFINITE', 'BLACK', 'EMPRESARIAL', 'METAL'];
+
+      var config = { periodos: [] };
+      var configSha = null;
+      var dirty = false;
+
+      var periodsContainer = document.getElementById('periodsContainer');
+      var btnLoad = document.getElementById('btnLoad');
+      var btnAddPeriod = document.getElementById('btnAddPeriod');
+      var btnDupPeriod = document.getElementById('btnDupPeriod');
+      var btnSave = document.getElementById('btnSave');
+      var statusMsg = document.getElementById('statusMsg');
+      var tokenInput = document.getElementById('tokenInput');
+
+      btnLoad.addEventListener('click', loadConfig);
+      btnAddPeriod.addEventListener('click', function() { addPeriod(null); });
+      btnDupPeriod.addEventListener('click', duplicateLastPeriod);
+      btnSave.addEventListener('click', saveConfig);
+
+      // --- Load config from GitHub ---
+      async function loadConfig() {
+        var token = tokenInput.value.trim();
+        if (!token) { setStatus('error', 'Ingresa el token primero'); return; }
+
+        setStatus('loading', 'Cargando configuración...');
+        try {
+          var resp = await fetch(
+            'https://api.github.com/repos/' + REPO_OWNER + '/' + REPO_NAME + '/contents/' + CONFIG_PATH + '?ref=' + BRANCH,
+            { headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github.v3+json' } }
+          );
+          if (!resp.ok) throw new Error(resp.status === 401 ? 'Token inválido' : 'Error ' + resp.status);
+          var data = await resp.json();
+          configSha = data.sha;
+          var content = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ''))));
+          config = JSON.parse(content);
+          renderPeriods();
+          setStatus('success', '✅ Configuración cargada — ' + config.periodos.length + ' períodos');
+          btnSave.disabled = false;
+        } catch (e) {
+          setStatus('error', '❌ ' + e.message);
+        }
+      }
+
+      // --- Render all periods ---
+      function renderPeriods() {
+        periodsContainer.innerHTML = '';
+        config.periodos.forEach(function(p, idx) { renderPeriodCard(p, idx); });
+      }
+
+      function renderPeriodCard(periodo, idx) {
+        var card = document.createElement('div');
+        card.className = 'period-card';
+        card.id = 'period-' + idx;
+
+        var isMisma = periodo.distribucion === 'misma';
+        var distHtml = '';
+
+        if (!isMisma && periodo.distribucion) {
+          distHtml = buildDistTable(periodo, idx);
+        }
+
+        card.innerHTML = '<div class="period-header">' +
+          '<span class="period-title">Período ' + (idx + 1) + ': ' + periodo.desde + ' → ' + periodo.hasta + '</span>' +
+          '<div class="period-actions">' +
+            '<button class="btn btn-sm btn-danger" onclick="removePeriod(' + idx + ')">🗑️ Eliminar</button>' +
+          '</div>' +
+        '</div>' +
+        '<div class="period-body">' +
+          '<div class="period-fields">' +
+            '<div class="field"><label>Desde</label><input type="date" value="' + periodo.desde + '" onchange="updateField(' + idx + ',\'desde\',this.value)"></div>' +
+            '<div class="field"><label>Hasta</label><input type="date" value="' + periodo.hasta + '" onchange="updateField(' + idx + ',\'hasta\',this.value)"></div>' +
+            '<div class="field"><label>Tope mensual</label><input type="number" value="' + periodo.topeMensual + '" min="100" step="100" onchange="updateField(' + idx + ',\'topeMensual\',Number(this.value))"><div class="help">Tope diario global: ' + Math.floor(periodo.topeMensual / periodo.diasMes) + '</div></div>' +
+            '<div class="field"><label>Días del mes</label><input type="number" value="' + periodo.diasMes + '" min="1" max="31" onchange="updateField(' + idx + ',\'diasMes\',Number(this.value))"></div>' +
+          '</div>' +
+          '<div class="misma-toggle">' +
+            '<input type="checkbox" id="misma-' + idx + '" ' + (isMisma ? 'checked' : '') + ' onchange="toggleMisma(' + idx + ', this.checked)">' +
+            '<label for="misma-' + idx + '">Usar misma distribución del período anterior</label>' +
+          '</div>' +
+          '<div class="dist-section" id="dist-section-' + idx + '" style="' + (isMisma ? 'display:none' : '') + '">' +
+            '<h4>📊 Distribución por Producto / Categoría</h4>' +
+            distHtml +
+          '</div>' +
+        '</div>';
+
+        periodsContainer.appendChild(card);
+      }
+
+      function buildDistTable(periodo, idx) {
+        var dist = periodo.distribucion;
+        if (!dist || dist === 'misma') return '';
+
+        var html = '<table class="dist-table"><thead><tr><th>Producto / Categoría</th><th>% Participación</th><th>Tope diario</th></tr></thead><tbody>';
+
+        var productos = Object.keys(dist);
+        for (var p = 0; p < productos.length; p++) {
+          var prod = productos[p];
+          var info = dist[prod];
+          var pctProd = (info.pctProducto * 100).toFixed(1);
+
+          html += '<tr class="prod-row"><td><strong>' + prod + '</strong></td>' +
+            '<td><input type="number" value="' + pctProd + '" min="0" max="100" step="0.1" ' +
+            'onchange="updateProdPct(' + idx + ',\'' + prod + '\',this.value)"> %</td>' +
+            '<td class="tope-preview">' + Math.floor(periodo.topeMensual * info.pctProducto / periodo.diasMes) + '/día</td></tr>';
+
+          var cats = Object.keys(info.categorias);
+          var catSum = 0;
+          for (var c = 0; c < cats.length; c++) {
+            var cat = cats[c];
+            var pctCat = (info.categorias[cat] * 100).toFixed(0);
+            catSum += info.categorias[cat];
+            var topeDiario = Math.floor(Math.floor(periodo.topeMensual * info.pctProducto) * info.categorias[cat] / periodo.diasMes);
+
+            html += '<tr class="cat-row"><td>' + cat + '</td>' +
+              '<td><input type="number" value="' + pctCat + '" min="0" max="100" step="1" ' +
+              'onchange="updateCatPct(' + idx + ',\'' + prod + '\',\'' + cat + '\',this.value)"> %</td>' +
+              '<td class="tope-preview">' + topeDiario + '/día</td></tr>';
+          }
+
+          var sumPct = Math.round(catSum * 100);
+          var sumClass = Math.abs(sumPct - 100) <= 2 ? 'pct-ok' : 'pct-warning';
+          var sumText = sumPct === 100 ? '✓ 100%' : '⚠ ' + sumPct + '%';
+          html += '<tr><td></td><td class="' + sumClass + '">Suma: ' + sumText + '</td><td></td></tr>';
+        }
+
+        html += '</tbody></table>';
+        html += '<button class="btn-add-prod" onclick="addProducto(' + idx + ')">+ Agregar producto</button>';
+        return html;
+      }
+
+      // --- Update functions ---
+      window.updateField = function(idx, field, value) {
+        config.periodos[idx][field] = value;
+        markDirty();
+        renderPeriods();
+      };
+
+      window.toggleMisma = function(idx, checked) {
+        if (checked) {
+          config.periodos[idx].distribucion = 'misma';
+        } else {
+          // Copy distribution from previous period
+          var prev = findPreviousDist(idx);
+          config.periodos[idx].distribucion = prev ? JSON.parse(JSON.stringify(prev)) : {};
+        }
+        markDirty();
+        renderPeriods();
+      };
+
+      window.updateProdPct = function(idx, prod, value) {
+        config.periodos[idx].distribucion[prod].pctProducto = Number(value) / 100;
+        markDirty();
+        renderPeriods();
+      };
+
+      window.updateCatPct = function(idx, prod, cat, value) {
+        config.periodos[idx].distribucion[prod].categorias[cat] = Number(value) / 100;
+        markDirty();
+        renderPeriods();
+      };
+
+      window.removePeriod = function(idx) {
+        if (!confirm('¿Eliminar período ' + (idx + 1) + '?')) return;
+        config.periodos.splice(idx, 1);
+        markDirty();
+        renderPeriods();
+      };
+
+      window.addProducto = function(idx) {
+        var name = prompt('Nombre del producto:');
+        if (!name) return;
+        if (!config.periodos[idx].distribucion) config.periodos[idx].distribucion = {};
+        config.periodos[idx].distribucion[name] = { pctProducto: 0, categorias: { 'CLASICA': 0.5, 'ORO': 0.5 } };
+        markDirty();
+        renderPeriods();
+      };
+
+      function addPeriod(base) {
+        var lastPeriod = config.periodos[config.periodos.length - 1];
+        var newDesde = lastPeriod ? nextDay(lastPeriod.hasta) : '2026-06-01';
+        var newHasta = addDays(newDesde, 6);
+
+        var newPeriod = base ? JSON.parse(JSON.stringify(base)) : {
+          desde: newDesde,
+          hasta: newHasta,
+          topeMensual: lastPeriod ? lastPeriod.topeMensual : 6000,
+          diasMes: 30,
+          distribucion: 'misma'
+        };
+
+        if (!base) {
+          newPeriod.desde = newDesde;
+          newPeriod.hasta = newHasta;
+        }
+
+        config.periodos.push(newPeriod);
+        markDirty();
+        renderPeriods();
+        document.getElementById('period-' + (config.periodos.length - 1)).scrollIntoView({ behavior: 'smooth' });
+      }
+
+      function duplicateLastPeriod() {
+        var last = config.periodos[config.periodos.length - 1];
+        if (!last) { addPeriod(null); return; }
+        var dup = JSON.parse(JSON.stringify(last));
+        dup.desde = nextDay(last.hasta);
+        dup.hasta = addDays(dup.desde, daysBetween(last.desde, last.hasta));
+        config.periodos.push(dup);
+        markDirty();
+        renderPeriods();
+        document.getElementById('period-' + (config.periodos.length - 1)).scrollIntoView({ behavior: 'smooth' });
+      }
+
+      // --- Save ---
+      async function saveConfig() {
+        var token = tokenInput.value.trim();
+        if (!token) { setStatus('error', 'Token requerido'); return; }
+
+        btnSave.disabled = true;
+        setStatus('loading', '<span class="spinner-sm"></span> Guardando configuración...');
+
+        try {
+          var content = btoa(unescape(encodeURIComponent(JSON.stringify(config, null, 2))));
+          var body = { message: 'config: actualizar topes-config.json', content: content, branch: BRANCH };
+          if (configSha) body.sha = configSha;
+
+          var resp = await fetch(
+            'https://api.github.com/repos/' + REPO_OWNER + '/' + REPO_NAME + '/contents/' + CONFIG_PATH,
+            { method: 'PUT', headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json', 'Accept': 'application/vnd.github.v3+json' }, body: JSON.stringify(body) }
+          );
+
+          if (!resp.ok) {
+            var err = await resp.json().catch(function() { return {}; });
+            throw new Error(err.message || 'Error ' + resp.status);
+          }
+
+          var result = await resp.json();
+          configSha = result.content.sha;
+          dirty = false;
+          setStatus('success', '✅ Configuración guardada. Los dashboards se regenerarán en ~3-5 minutos.');
+          btnSave.disabled = false;
+        } catch (e) {
+          setStatus('error', '❌ ' + e.message);
+          btnSave.disabled = false;
+        }
+      }
+
+      // --- Helpers ---
+      function findPreviousDist(idx) {
+        for (var i = idx - 1; i >= 0; i--) {
+          if (config.periodos[i].distribucion && config.periodos[i].distribucion !== 'misma') {
+            return config.periodos[i].distribucion;
+          }
+        }
+        return null;
+      }
+
+      function nextDay(dateStr) {
+        var d = new Date(dateStr + 'T12:00:00');
+        d.setDate(d.getDate() + 1);
+        return d.toISOString().slice(0, 10);
+      }
+
+      function addDays(dateStr, days) {
+        var d = new Date(dateStr + 'T12:00:00');
+        d.setDate(d.getDate() + days);
+        return d.toISOString().slice(0, 10);
+      }
+
+      function daysBetween(d1, d2) {
+        return Math.round((new Date(d2) - new Date(d1)) / 86400000);
+      }
+
+      function markDirty() { dirty = true; btnSave.disabled = false; setStatus('', 'Cambios sin guardar'); }
+
+      function setStatus(type, msg) {
+        statusMsg.className = 'status-msg' + (type ? ' ' + type : '');
+        statusMsg.innerHTML = msg;
+      }
+    })();
+  </script>
+</body>
+</html>
