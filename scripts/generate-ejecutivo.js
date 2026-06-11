@@ -548,10 +548,10 @@ function generateEjecutivoHTML(tablaData, fechas, transactionCounts) {
 
       var html = '<div class="periodo-form">';
       html += '<div class="periodo-meta">';
-      html += formGroup('Desde', 'date', p.desde, 'onchange="updateMeta(\'desde\', this.value)"');
-      html += formGroup('Hasta', 'date', p.hasta, 'onchange="updateMeta(\'hasta\', this.value)"');
-      html += formGroup('Tope mensual', 'number', p.topeMensual, 'onchange="updateMeta(\'topeMensual\', parseInt(this.value))" min="0" step="100"');
-      html += formGroup('Días del mes', 'number', p.diasMes, 'onchange="updateMeta(\'diasMes\', parseInt(this.value))" min="1" max="31"');
+      html += formGroup('Desde', 'date', p.desde, 'onchange="updateMeta(&#39;desde&#39;, this.value)"');
+      html += formGroup('Hasta', 'date', p.hasta, 'onchange="updateMeta(&#39;hasta&#39;, this.value)"');
+      html += formGroup('Tope mensual', 'number', p.topeMensual, 'onchange="updateMeta(&#39;topeMensual&#39;, parseInt(this.value))" min="0" step="100"');
+      html += formGroup('Días del mes', 'number', p.diasMes, 'onchange="updateMeta(&#39;diasMes&#39;, parseInt(this.value))" min="1" max="31"');
       html += '</div>';
 
       html += '<div class="tope-global-preview">Tope diario global: ' + topeGlobal + '/día <span class="formula">= FLOOR(' + p.topeMensual + ' / ' + p.diasMes + ')</span></div>';
@@ -595,10 +595,10 @@ function generateEjecutivoHTML(tablaData, fechas, transactionCounts) {
           html += '<tr' + (catIdx === 0 ? ' class="producto-row"' : '') + '>';
           if (catIdx === 0) {
             html += '<td rowspan="' + cats.length + '"><strong>' + prod + '</strong></td>';
-            html += '<td rowspan="' + cats.length + '"><input type="number" value="' + (info.pctProducto * 100).toFixed(1) + '" step="0.1" min="0" max="100" onchange="updatePctProducto(\'' + prod.replace(/'/g, "\\'") + '\', this.value)"> %</td>';
+            html += '<td rowspan="' + cats.length + '"><input type="number" value="' + (info.pctProducto * 100).toFixed(1) + '" step="0.1" min="0" max="100" onchange="updatePctProducto(&quot;' + prod.replace(/'/g, "&#39;") + '&quot;, this.value)"> %</td>';
           }
           html += '<td>' + cat + '</td>';
-          html += '<td><input type="number" value="' + (pctCat * 100).toFixed(0) + '" step="1" min="0" max="100" onchange="updatePctCategoria(\'' + prod.replace(/'/g, "\\'") + '\', \'' + cat + '\', this.value)"> %</td>';
+          html += '<td><input type="number" value="' + (pctCat * 100).toFixed(0) + '" step="1" min="0" max="100" onchange="updatePctCategoria(&quot;' + prod.replace(/'/g, "&#39;") + '&quot;, &quot;' + cat + '&quot;, this.value)"> %</td>';
           html += '<td class="tope-diario">' + topeDia + '</td>';
           html += '</tr>';
         });
