@@ -706,7 +706,8 @@ function generateHTML(data) {
         var p = topesConfig.periodos[i];
         if (p.distribucion !== 'misma') distribucionAnterior = p.distribucion;
         if (fecha >= p.desde && fecha <= p.hasta) {
-          return { topeMensual: p.topeMensual, diasMes: p.diasMes, distribucion: p.distribucion === 'misma' ? distribucionAnterior : p.distribucion };
+          var dist = p.distribucion === 'misma' ? distribucionAnterior : p.distribucion;
+          return { topeMensual: p.topeMensual, diasMes: p.diasMes, distribucion: dist };
         }
       }
       return null;
