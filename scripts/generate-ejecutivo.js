@@ -394,6 +394,7 @@ function generateEjecutivoHTML(tablaData, fechas, transactionCounts) {
     // --- Datos embebidos server-side ---
     var TOPES_CONFIG_DEFAULT = ${JSON.stringify(config)};
     var TRANSACTION_COUNTS = ${JSON.stringify(transactionCounts)};
+    var HORA_TOPES = ${JSON.stringify(horaTopes)};
     var FECHAS = ${JSON.stringify(fechas)};
     var TABLA_COMBOS = ${JSON.stringify(tablaData.map(r => ({ producto: r.producto, categoria: r.categoria })))};
 
@@ -522,10 +523,16 @@ function generateEjecutivoHTML(tablaData, fechas, transactionCounts) {
 
           // Hora cell
           if (cells[colIdx]) {
+            var horaKey = combo.producto + '|' + combo.categoria + '|' + f;
             if (agendados === 0) {
               cells[colIdx].innerHTML = '<span class="hora-na">—</span>';
             } else if (isAgotado) {
-              cells[colIdx].innerHTML = '<span class="hora-agotado">🔴 Agotado</span>';
+              var horaOriginal = HORA_TOPES[horaKey];
+              if (horaOriginal) {
+                cells[colIdx].innerHTML = '<span class="hora-agotado">' + horaOriginal + ':00</span>';
+              } else {
+                cells[colIdx].innerHTML = '<span class="hora-agotado">🔴 Agotado</span>';
+              }
             } else {
               cells[colIdx].innerHTML = '<span class="hora-disponible">✓</span>';
             }
@@ -789,6 +796,17 @@ function main() {
 
   // Construir mapa de conteos para recálculo client-side
   const transactionCounts = buildTransactionCounts(transacciones);
+
+  // Construir mapa de horas de agotamiento (server-side) para mostrar en recálculo
+  const horaTopes = {};
+  for (const row of tablaData) {
+    for (const f of fechas) {
+      const data = row.porFecha[f];
+      if (data && data.horaTope !== null) {
+        horaTopes[`${row.producto}|${row.categoria}|${f}`] = data.horaTope;
+      }
+    }
+  }
 
   const html = generateEjecutivoHTML(tablaData, fechas, transactionCounts);
   const outputDir = path.dirname(OUTPUT_PATH);
