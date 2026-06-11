@@ -17,345 +17,118 @@
       --text-light: #616161;
       --border: #E0E0E0;
       --shadow: 0 2px 8px rgba(0,0,0,0.08);
-      --accent: #FBC02D;
+      --accent: #1565C0;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'Segoe UI', -apple-system, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.5;
-      padding: 24px;
-    }
-
-    .header {
-      background: linear-gradient(135deg, var(--primary), var(--primary-light));
-      color: white;
-      padding: 24px 32px;
-      border-radius: 12px;
-      margin-bottom: 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
+    body { font-family: 'Segoe UI', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; padding: 24px; }
+    .header { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 24px 32px; border-radius: 12px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; }
     .header h1 { font-size: 1.5rem; font-weight: 600; }
     .header .meta { font-size: 0.85rem; opacity: 0.85; }
-
-    .filters {
-      display: flex;
-      gap: 16px;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
-      align-items: flex-end;
-    }
-
-    .filter-group {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .filter-group label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      color: var(--text-light);
-    }
-
-    select, input[type="number"] {
-      padding: 8px 12px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      font-size: 0.9rem;
-      background: white;
-      min-width: 140px;
-    }
-
-    .kpi-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-
-    .kpi-card {
-      background: var(--card-bg);
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: var(--shadow);
-      text-align: center;
-    }
-
-    .kpi-card .value {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--primary);
-    }
-
-    .kpi-card .label {
-      font-size: 0.78rem;
-      color: var(--text-light);
-      margin-top: 4px;
-    }
-
-    .section-card {
-      background: var(--card-bg);
-      border-radius: 12px;
-      box-shadow: var(--shadow);
-      padding: 24px;
-      margin-bottom: 24px;
-    }
-
-    .section-card h3 {
-      margin-bottom: 16px;
-      color: var(--primary);
-      font-size: 1.1rem;
-    }
-
-    .table-container {
-      background: var(--card-bg);
-      border-radius: 12px;
-      box-shadow: var(--shadow);
-      overflow-x: auto;
-      margin-bottom: 24px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.85rem;
-    }
-
+    .filters { display: flex; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; align-items: flex-end; }
+    .filter-group { display: flex; flex-direction: column; gap: 4px; }
+    .filter-group label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--text-light); }
+    select, input[type="number"] { padding: 8px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; background: white; min-width: 140px; }
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 24px; }
+    .kpi-card { background: var(--card-bg); padding: 20px; border-radius: 12px; box-shadow: var(--shadow); text-align: center; }
+    .kpi-card .value { font-size: 1.8rem; font-weight: 700; color: var(--primary); }
+    .kpi-card .label { font-size: 0.78rem; color: var(--text-light); margin-top: 4px; }
+    .section-card { background: var(--card-bg); border-radius: 12px; box-shadow: var(--shadow); padding: 24px; margin-bottom: 24px; }
+    .section-card h3 { margin-bottom: 16px; color: var(--primary); font-size: 1.1rem; }
+    .table-container { background: var(--card-bg); border-radius: 12px; box-shadow: var(--shadow); overflow-x: auto; margin-bottom: 24px; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
     thead { background: var(--primary); color: white; }
     th { padding: 12px 14px; text-align: left; font-weight: 600; white-space: nowrap; }
     td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
     tbody tr:hover { background: #f0f4ff; }
-
-    .badge {
-      display: inline-block;
-      padding: 3px 10px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 600;
-    }
+    .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
     .badge-danger { background: #ffebee; color: var(--danger); }
     .badge-warning { background: #fff3e0; color: var(--warning); }
     .badge-success { background: #e8f5e9; color: var(--success); }
-
-    .progress-bar {
-      width: 100%;
-      height: 8px;
-      background: #e0e0e0;
-      border-radius: 4px;
-      overflow: hidden;
-    }
-    .progress-bar .fill {
-      height: 100%;
-      border-radius: 4px;
-      transition: width 0.3s;
-    }
-
-    /* --- Resumen visual de topes (reemplazo de timeline) --- */
-    .resumen-topes-grid {
-      display: grid;
-      grid-template-columns: 180px 100px repeat(auto-fill, minmax(80px, 1fr));
-      gap: 1px;
-      background: var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-      font-size: 0.8rem;
-    }
-    .resumen-topes-grid .cell {
-      background: white;
-      padding: 8px 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-    .resumen-topes-grid .cell-header {
-      background: #f0f2f5;
-      font-weight: 600;
-      color: var(--text);
-    }
-    .resumen-topes-grid .cell-label {
-      justify-content: flex-start;
-      font-weight: 500;
-    }
-    .hora-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      padding: 4px;
-      border-radius: 6px;
-      font-weight: 700;
-      font-size: 0.82rem;
-    }
-
-    /* --- Gráfico acumulado mejorado --- */
-    .chart-container {
-      margin-bottom: 20px;
-      padding: 16px;
-      background: #fafbfc;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-    }
-    .chart-title {
-      font-weight: 600;
-      font-size: 0.9rem;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .chart-bar-area {
-      position: relative;
-      height: 120px;
-      display: flex;
-      align-items: flex-end;
-      gap: 3px;
-      padding-left: 40px;
-      border-bottom: 2px solid var(--border);
-      border-left: 1px solid var(--border);
-    }
-    .chart-bar {
-      flex: 1;
-      border-radius: 3px 3px 0 0;
-      position: relative;
-      transition: height 0.3s;
-      min-width: 12px;
-    }
+    .progress-bar { width: 100%; height: 8px; background: #e0e0e0; border-radius: 4px; overflow: hidden; }
+    .progress-bar .fill { height: 100%; border-radius: 4px; transition: width 0.3s; }
+    .resumen-topes-grid { display: grid; grid-template-columns: 180px 100px repeat(auto-fill, minmax(80px, 1fr)); gap: 1px; background: var(--border); border-radius: 8px; overflow: hidden; font-size: 0.8rem; }
+    .resumen-topes-grid .cell { background: white; padding: 8px 10px; display: flex; align-items: center; justify-content: center; text-align: center; }
+    .resumen-topes-grid .cell-header { background: #f0f2f5; font-weight: 600; color: var(--text); }
+    .resumen-topes-grid .cell-label { justify-content: flex-start; font-weight: 500; }
+    .hora-badge { display: inline-flex; align-items: center; justify-content: center; width: 100%; padding: 4px; border-radius: 6px; font-weight: 700; font-size: 0.82rem; }
+    .chart-container { margin-bottom: 20px; padding: 16px; background: #fafbfc; border-radius: 10px; border: 1px solid var(--border); }
+    .chart-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .chart-bar-area { position: relative; height: 120px; display: flex; align-items: flex-end; gap: 3px; padding-left: 40px; border-bottom: 2px solid var(--border); border-left: 1px solid var(--border); }
+    .chart-bar { flex: 1; border-radius: 3px 3px 0 0; position: relative; transition: height 0.3s; min-width: 12px; }
     .chart-bar:hover { opacity: 0.85; }
-    .chart-bar-label {
-      position: absolute;
-      top: -18px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.65rem;
-      font-weight: 600;
-      color: var(--text);
-      white-space: nowrap;
-    }
-    .chart-tope-line {
-      position: absolute;
-      left: 40px;
-      right: 0;
-      border-top: 2px dashed var(--danger);
-      z-index: 2;
-    }
-    .chart-tope-label {
-      position: absolute;
-      left: 0;
-      font-size: 0.65rem;
-      color: var(--danger);
-      font-weight: 700;
-      transform: translateY(-50%);
-    }
-    .chart-x-axis {
-      display: flex;
-      gap: 3px;
-      padding-left: 40px;
-      margin-top: 4px;
-    }
-    .chart-x-axis span {
-      flex: 1;
-      text-align: center;
-      font-size: 0.65rem;
-      color: var(--text-light);
-    }
-    .chart-legend {
-      display: flex;
-      gap: 16px;
-      margin-top: 8px;
-      font-size: 0.75rem;
-      color: var(--text-light);
-    }
-    .chart-legend-item {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-    .chart-legend-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 2px;
-    }
-
-    /* --- Simulador de escenarios --- */
-    .simulator {
-      background: linear-gradient(135deg, #E8F5E9, #FFF8E1);
-      border-radius: 12px;
-      padding: 24px;
-      margin-bottom: 24px;
-      border: 2px solid #A5D6A7;
-    }
-    .simulator h3 {
-      color: var(--primary);
-      margin-bottom: 8px;
-    }
-    .simulator p {
-      font-size: 0.85rem;
-      color: var(--text-light);
-      margin-bottom: 16px;
-    }
-    .sim-controls {
-      display: flex;
-      gap: 16px;
-      align-items: flex-end;
-      flex-wrap: wrap;
-      margin-bottom: 16px;
-    }
-    .sim-input-group {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .sim-input-group label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      color: var(--primary);
-    }
-    .sim-input-group input {
-      padding: 10px 14px;
-      border: 2px solid var(--primary-light);
-      border-radius: 8px;
-      font-size: 1.1rem;
-      font-weight: 700;
-      width: 140px;
-      color: var(--primary);
-    }
-    .sim-btn {
-      padding: 10px 20px;
-      background: var(--primary);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      font-size: 0.9rem;
-    }
-    .sim-btn:hover { background: var(--primary-light); }
-    .sim-results {
-      background: white;
-      border-radius: 8px;
-      overflow-x: auto;
-    }
-    .sim-results table { font-size: 0.82rem; }
-    .sim-diff-positive { color: var(--success); font-weight: 600; }
-    .sim-diff-negative { color: var(--danger); font-weight: 600; }
-
+    .chart-bar-label { position: absolute; top: -18px; left: 50%; transform: translateX(-50%); font-size: 0.65rem; font-weight: 600; color: var(--text); white-space: nowrap; }
+    .chart-tope-line { position: absolute; left: 40px; right: 0; border-top: 2px dashed var(--danger); z-index: 2; }
+    .chart-tope-label { position: absolute; left: 0; font-size: 0.65rem; color: var(--danger); font-weight: 700; transform: translateY(-50%); }
+    .chart-x-axis { display: flex; gap: 3px; padding-left: 40px; margin-top: 4px; }
+    .chart-x-axis span { flex: 1; text-align: center; font-size: 0.65rem; color: var(--text-light); }
+    .chart-legend { display: flex; gap: 16px; margin-top: 8px; font-size: 0.75rem; color: var(--text-light); }
+    .chart-legend-item { display: flex; align-items: center; gap: 4px; }
+    .chart-legend-dot { width: 10px; height: 10px; border-radius: 2px; }
     .header-logo { height: 40px; margin-right: 16px; }
+
+    /* --- Panel de Topes Editable --- */
+    .topes-panel { background: var(--card-bg); border-radius: 12px; box-shadow: var(--shadow); margin-bottom: 24px; overflow: hidden; }
+    .topes-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; background: #f8fdf8; border-bottom: 1px solid var(--border); cursor: pointer; }
+    .topes-header h2 { font-size: 1rem; color: var(--primary); display: flex; align-items: center; gap: 8px; }
+    .topes-header .toggle { font-size: 1.2rem; transition: transform 0.2s; }
+    .topes-header .toggle.open { transform: rotate(180deg); }
+    .topes-body { padding: 20px 24px; display: none; }
+    .topes-body.open { display: block; }
+    .periodos-tabs { display: flex; gap: 0; border-bottom: 2px solid var(--border); margin-bottom: 20px; overflow-x: auto; }
+    .periodo-tab { padding: 10px 18px; font-size: 0.82rem; font-weight: 500; cursor: pointer; border-bottom: 3px solid transparent; white-space: nowrap; color: var(--text-light); transition: all 0.2s; }
+    .periodo-tab:hover { color: var(--primary); background: #f0f7f0; }
+    .periodo-tab.active { color: var(--primary); border-bottom-color: var(--primary); font-weight: 700; }
+    .periodo-tab .tab-badge { background: var(--primary); color: white; font-size: 0.65rem; padding: 2px 6px; border-radius: 10px; margin-left: 6px; }
+    .periodo-form { background: #fafbfc; border: 1px solid var(--border); border-radius: 10px; padding: 20px; }
+    .periodo-meta { display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 4px; }
+    .form-group label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; color: var(--text-light); letter-spacing: 0.3px; }
+    .form-group input { padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 0.9rem; width: 130px; }
+    .form-group input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px rgba(27,94,32,0.1); }
+    .form-group input[type="date"] { width: 150px; }
+    .tope-global-preview { background: #E8F5E9; border-radius: 8px; padding: 10px 16px; font-size: 0.85rem; color: var(--primary); font-weight: 600; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+    .tope-global-preview .formula { font-weight: 400; font-size: 0.78rem; color: var(--text-light); }
+    .dist-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    .dist-table th { background: var(--primary); color: white; padding: 10px 12px; text-align: left; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; }
+    .dist-table td { padding: 8px 12px; border-bottom: 1px solid #f0f0f0; }
+    .dist-table tr:hover { background: #f0f7f0; }
+    .dist-table input { width: 70px; padding: 5px 8px; border: 1px solid var(--border); border-radius: 4px; font-size: 0.85rem; text-align: right; }
+    .dist-table input:focus { outline: none; border-color: var(--primary); background: #f8fdf8; }
+    .dist-table .producto-row { background: #f8fdf8; font-weight: 600; }
+    .dist-table .tope-diario { font-weight: 700; color: var(--primary); text-align: center; }
+    .dist-table .pct-warning { color: var(--warning); }
+    .dist-table .pct-ok { color: var(--success); }
+    .dist-table .pct-error { color: var(--danger); }
+    .subtotal-row { background: #fff8e1 !important; font-weight: 600; font-size: 0.8rem; }
+    .subtotal-row td { border-top: 2px solid var(--warning); }
+    .btn { padding: 8px 16px; border: none; border-radius: 6px; font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all 0.15s; }
+    .btn-sm { padding: 5px 10px; font-size: 0.75rem; }
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-primary:hover { background: var(--primary-light); }
+    .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
+    .btn-outline:hover { background: #f5f5f5; }
+    .btn-danger { background: transparent; border: 1px solid #ffcdd2; color: var(--danger); }
+    .btn-danger:hover { background: #ffebee; }
+    .btn-accent { background: var(--accent); color: white; }
+    .btn-accent:hover { background: #1976D2; }
+    .actions-bar { display: flex; gap: 10px; margin-top: 16px; align-items: center; flex-wrap: wrap; }
+    .actions-bar .spacer { flex: 1; }
+    .save-indicator { font-size: 0.78rem; color: var(--success); display: none; }
+    .save-indicator.visible { display: inline-flex; align-items: center; gap: 4px; }
+    .misma-dist { display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: #E3F2FD; border-radius: 8px; margin-bottom: 16px; font-size: 0.85rem; color: var(--accent); }
+    .misma-dist input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--accent); }
+    .toast { position: fixed; bottom: 24px; right: 24px; background: var(--primary); color: white; padding: 14px 20px; border-radius: 10px; font-size: 0.88rem; box-shadow: 0 4px 20px rgba(0,0,0,0.15); display: none; z-index: 1000; animation: slideUp 0.3s; }
+    .toast.visible { display: block; }
+    @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
     @media (max-width: 768px) {
       body { padding: 12px; }
       .filters { flex-direction: column; }
       .kpi-grid { grid-template-columns: 1fr 1fr; }
       .chart-bar-area { height: 80px; }
+      .periodo-meta { flex-direction: column; }
+      .form-group input { width: 100%; }
+      .dist-table input { width: 55px; }
     }
   </style>
 </head>
@@ -368,32 +141,21 @@
         <div class="meta">Análisis de consumo de topes por Producto y Categoría TC</div>
       </div>
     </div>
-    <div class="meta">
-      Generado: 10 de junio de 2026 a las 04:54 p. m.
-    </div>
+    <div class="meta">Generado: 11 de junio de 2026 a las 02:19 p. m.</div>
   </div>
 
   <div class="filters">
     <div class="filter-group">
       <label>Fecha</label>
-      <select id="filterFecha">
-        <option value="all">Todas las fechas</option>
-        <option value="2026-06-01">2026-06-01</option><option value="2026-06-02">2026-06-02</option><option value="2026-06-03">2026-06-03</option><option value="2026-06-04">2026-06-04</option><option value="2026-06-05">2026-06-05</option><option value="2026-06-06">2026-06-06</option><option value="2026-06-07">2026-06-07</option><option value="2026-06-08">2026-06-08</option><option value="2026-06-09">2026-06-09</option><option value="2026-06-10">2026-06-10</option>
-      </select>
+      <select id="filterFecha"><option value="all">Todas las fechas</option><option value="2026-06-01">2026-06-01</option><option value="2026-06-02">2026-06-02</option><option value="2026-06-03">2026-06-03</option><option value="2026-06-04">2026-06-04</option><option value="2026-06-05">2026-06-05</option><option value="2026-06-06">2026-06-06</option><option value="2026-06-07">2026-06-07</option><option value="2026-06-08">2026-06-08</option><option value="2026-06-09">2026-06-09</option><option value="2026-06-10">2026-06-10</option></select>
     </div>
     <div class="filter-group">
       <label>Producto</label>
-      <select id="filterProducto">
-        <option value="all">Todos</option>
-        <option value="Cencosud">Cencosud</option><option value="Otras marcas">Otras marcas</option><option value="Pricesmart">Pricesmart</option>
-      </select>
+      <select id="filterProducto"><option value="all">Todos</option><option value="Cencosud">Cencosud</option><option value="Otras marcas">Otras marcas</option><option value="Pricesmart">Pricesmart</option></select>
     </div>
     <div class="filter-group">
       <label>Categoría TC</label>
-      <select id="filterCategoria">
-        <option value="all">Todas</option>
-        <option value="BLACK">BLACK</option><option value="CLASICA">CLASICA</option><option value="EMPRESARIAL">EMPRESARIAL</option><option value="INFINITE">INFINITE</option><option value="ORO">ORO</option><option value="PLATINUM">PLATINUM</option><option value="SIGNATURE">SIGNATURE</option>
-      </select>
+      <select id="filterCategoria"><option value="all">Todas</option><option value="BLACK">BLACK</option><option value="CLASICA">CLASICA</option><option value="EMPRESARIAL">EMPRESARIAL</option><option value="INFINITE">INFINITE</option><option value="ORO">ORO</option><option value="PLATINUM">PLATINUM</option><option value="SIGNATURE">SIGNATURE</option></select>
     </div>
     <div class="filter-group">
       <label>Estado de Tope</label>
@@ -407,26 +169,29 @@
 
   <div class="kpi-grid" id="kpiGrid"></div>
 
-  <!-- Simulador de escenarios -->
-  <div class="simulator">
-    <h3>🔬 Simulador de Escenarios — Análisis de Topes</h3>
-    <p>Cambia el tope mensual global y los días del mes para simular cómo se redistribuyen los topes diarios por producto y categoría. Los porcentajes de participación se mantienen fijos.</p>
-    <div class="sim-controls">
-      <div class="sim-input-group">
-        <label>Tope mensual global</label>
-        <input type="number" id="simTopeMensual" value="10000" min="100" step="500">
+  <!-- Panel de Topes Editable -->
+  <div class="topes-panel">
+    <div class="topes-header" onclick="toggleTopesPanel()">
+      <h2><span>⚙️</span> Configuración de Topes y Distribución</h2>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span class="save-indicator" id="saveIndicator">✅ Guardado</span>
+        <span class="toggle" id="toggleIcon">▼</span>
       </div>
-      <div class="sim-input-group">
-        <label>Días del mes</label>
-        <input type="number" id="simDiasMes" value="30" min="1" max="31" step="1">
-      </div>
-      <button class="sim-btn" onclick="runSimulation()">Simular</button>
-      <button class="sim-btn" onclick="resetSimulation()" style="background:#607d8b;">Resetear</button>
     </div>
-    <div id="simResults"></div>
+    <div class="topes-body" id="topesBody">
+      <div class="periodos-tabs" id="periodosTabs"></div>
+      <div id="periodoForm"></div>
+      <div class="actions-bar">
+        <button class="btn btn-accent" onclick="addPeriodo()">+ Agregar período</button>
+        <button class="btn btn-outline" onclick="duplicatePeriodo()">📋 Duplicar actual</button>
+        <span class="spacer"></span>
+        <button class="btn btn-danger" onclick="resetDefaults()">↺ Resetear a defaults</button>
+        <button class="btn btn-primary" onclick="saveTopesConfig()">💾 Guardar cambios</button>
+      </div>
+    </div>
   </div>
 
-  <!-- Resumen visual: hora de tope por producto/categoría/día -->
+  <!-- Resumen visual: hora de tope -->
   <div class="section-card">
     <h3>🕐 Resumen — Hora de agotamiento por Producto / Categoría / Día</h3>
     <p style="font-size:0.8rem;color:var(--text-light);margin-bottom:12px;">Muestra a qué hora se cumplió el tope diario. Rojo = agotado temprano. Verde = disponible todo el día.</p>
@@ -435,2330 +200,414 @@
 
   <div class="table-container">
     <table>
-      <thead>
-        <tr>
-          <th>Producto</th>
-          <th>Categoría TC</th>
-          <th>Fecha</th>
-          <th>Clientes</th>
-          <th>Tope Diario</th>
-          <th>% Consumo</th>
-          <th>Hora Tope</th>
-          <th>Estado</th>
-        </tr>
-      </thead>
+      <thead><tr><th>Producto</th><th>Categoría TC</th><th>Fecha</th><th>Clientes</th><th>Tope Diario</th><th>% Consumo</th><th>Hora Tope</th><th>Estado</th></tr></thead>
       <tbody id="tableBody"></tbody>
     </table>
   </div>
 
-  <!-- Gráfico acumulado mejorado -->
+  <!-- Gráfico acumulado -->
   <div class="section-card">
     <h3>📈 Consumo acumulado por hora</h3>
-    <p style="font-size:0.8rem;color:var(--text-light);margin-bottom:16px;">Barras azules = clientes acumulados por hora. Línea roja punteada = tope diario. La barra roja marca la hora donde se alcanzó el tope.</p>
+    <p style="font-size:0.8rem;color:var(--text-light);margin-bottom:16px;">Barras azules = clientes acumulados por hora. Línea roja punteada = tope diario.</p>
     <div id="chartContainer"></div>
   </div>
 
+  <!-- Toast notification -->
+  <div class="toast" id="toast"></div>
+
   <script>
-    const DASHBOARD_DATA = {
-  "generado": "2026-06-11T15:08:15.695Z",
-  "fechas": [
-    "2026-06-01",
-    "2026-06-02",
-    "2026-06-03",
-    "2026-06-04",
-    "2026-06-05",
-    "2026-06-06",
-    "2026-06-07",
-    "2026-06-08",
-    "2026-06-09",
-    "2026-06-10",
-    "2026-06-11"
-  ],
-  "productos": [
-    "Cencosud",
-    "Otras marcas",
-    "Pricesmart"
-  ],
-  "categorias": [
-    "BLACK",
-    "CLASICA",
-    "EMPRESARIAL",
-    "INFINITE",
-    "ORO",
-    "PLATINUM",
-    "SIGNATURE"
-  ],
-  "resultados": [
-    {
-      "producto": "Otras marcas",
-      "categoria": "PLATINUM",
-      "fecha": "2026-06-01",
-      "totalClientes": 19,
-      "topeDiario": 14,
-      "horaTope": 16,
-      "acumuladoPorHora": {
-        "7": 1,
-        "8": 8,
-        "15": 13,
-        "16": 19
-      },
-      "porcentajeConsumo": 136
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "INFINITE",
-      "fecha": "2026-06-01",
-      "totalClientes": 7,
-      "topeDiario": 5,
-      "horaTope": 15,
-      "acumuladoPorHora": {
-        "8": 3,
-        "15": 6,
-        "16": 7
-      },
-      "porcentajeConsumo": 140
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "SIGNATURE",
-      "fecha": "2026-06-01",
-      "totalClientes": 3,
-      "topeDiario": 2,
-      "horaTope": 16,
-      "acumuladoPorHora": {
-        "8": 1,
-        "16": 3
-      },
-      "porcentajeConsumo": 150
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "BLACK",
-      "fecha": "2026-06-01",
-      "totalClientes": 4,
-      "topeDiario": 3,
-      "horaTope": 15,
-      "acumuladoPorHora": {
-        "8": 2,
-        "15": 3,
-        "16": 4
-      },
-      "porcentajeConsumo": 133
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "ORO",
-      "fecha": "2026-06-01",
-      "totalClientes": 6,
-      "topeDiario": 5,
-      "horaTope": 18,
-      "acumuladoPorHora": {
-        "8": 1,
-        "9": 2,
-        "10": 3,
-        "15": 4,
-        "18": 5,
-        "19": 6
-      },
-      "porcentajeConsumo": 120
-    },
-    {
-      "producto": "Cencosud",
-      "categoria": "PLATINUM",
-      "fecha": "2026-06-01",
-      "totalClientes": 5,
-      "topeDiario": 4,
-      "horaTope": 16,
-      "acumuladoPorHora": {
-        "8": 1,
-        "15": 3,
-        "16": 5
-      },
-      "porcentajeConsumo": 125
-    },
-    {
-      "producto": "Cencosud",
-      "categoria": "ORO",
-      "fecha": "2026-06-01",
-      "totalClientes": 4,
-      "topeDiario": 8,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "12": 1,
-        "13": 2,
-        "16": 3,
-        "21": 4
-      },
-      "porcentajeConsumo": 50
-    },
-    {
-      "producto": "Cencosud",
-      "categoria": "INFINITE",
-      "fecha": "2026-06-01",
-      "totalClientes": 1,
-      "topeDiario": 1,
-      "horaTope": 15,
-      "acumuladoPorHora": {
-        "15": 1
-      },
-      "porcentajeConsumo": 100
-    },
-    {
-      "producto": "Pricesmart",
-      "categoria": "ORO",
-      "fecha": "2026-06-01",
-      "totalClientes": 2,
-      "topeDiario": 6,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "20": 2
-      },
-      "porcentajeConsumo": 33
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "BLACK",
-      "fecha": "2026-06-02",
-      "totalClientes": 4,
-      "topeDiario": 3,
-      "horaTope": 5,
-      "acumuladoPorHora": {
-        "0": 2,
-        "5": 4
-      },
-      "porcentajeConsumo": 133
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "INFINITE",
-      "fecha": "2026-06-02",
-      "totalClientes": 7,
-      "topeDiario": 5,
-      "horaTope": 0,
-      "acumuladoPorHora": {
-        "0": 7
-      },
-      "porcentajeConsumo": 140
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "PLATINUM",
-      "fecha": "2026-06-02",
-      "totalClientes": 19,
-      "topeDiario": 14,
-      "horaTope": 5,
-      "acumuladoPorHora": {
-        "0": 7,
-        "4": 8,
-        "5": 16,
-        "6": 17,
-        "7": 19
-      },
-      "porcentajeConsumo": 136
-    },
-    {
-      "producto": "Cencosud",
-      "categoria": "PLATINUM",
-      "fecha": "2026-06-02",
-      "totalClientes": 5,
-      "topeDiario": 4,
-      "horaTope": 6,
-      "acumuladoPorHora": {
-        "0": 2,
-        "6": 4,
-        "7": 5
-      },
-      "porcentajeConsumo": 125
-    },
-    {
-      "producto": "Cencosud",
-      "categoria": "INFINITE",
-      "fecha": "2026-06-02",
-      "totalClientes": 1,
-      "topeDiario": 1,
-      "horaTope": 0,
-      "acumuladoPorHora": {
-        "0": 1
-      },
-      "porcentajeConsumo": 100
-    },
-    {
-      "producto": "Pricesmart",
-      "categoria": "ORO",
-      "fecha": "2026-06-02",
-      "totalClientes": 7,
-      "topeDiario": 6,
-      "horaTope": 11,
-      "acumuladoPorHora": {
-        "2": 1,
-        "5": 2,
-        "6": 3,
-        "8": 4,
-        "10": 5,
-        "11": 6,
-        "15": 7
-      },
-      "porcentajeConsumo": 117
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "ORO",
-      "fecha": "2026-06-02",
-      "totalClientes": 7,
-      "topeDiario": 5,
-      "horaTope": 10,
-      "acumuladoPorHora": {
-        "7": 1,
-        "8": 3,
-        "9": 4,
-        "10": 5,
-        "11": 7
-      },
-      "porcentajeConsumo": 140
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "SIGNATURE",
-      "fecha": "2026-06-02",
-      "totalClientes": 3,
-      "topeDiario": 2,
-      "horaTope": 9,
-      "acumuladoPorHora": {
-        "7": 1,
-        "9": 2,
-        "10": 3
-      },
-      "porcentajeConsumo": 150
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "EMPRESARIAL",
-      "fecha": "2026-06-02",
-      "totalClientes": 2,
-      "topeDiario": 5,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "8": 1,
-        "14": 2
-      },
-      "porcentajeConsumo": 40
-    },
-    {
-      "producto": "Pricesmart",
-      "categoria": "SIGNATURE",
-      "fecha": "2026-06-02",
-      "totalClientes": 2,
-      "topeDiario": 1,
-      "horaTope": 8,
-      "acumuladoPorHora": {
-        "8": 1,
-        "9": 2
-      },
-      "porcentajeConsumo": 200
-    },
-    {
-      "producto": "Cencosud",
-      "categoria": "ORO",
-      "fecha": "2026-06-02",
-      "totalClientes": 8,
-      "topeDiario": 8,
-      "horaTope": 18,
-      "acumuladoPorHora": {
-        "9": 2,
-        "10": 3,
-        "11": 4,
-        "12": 5,
-        "13": 6,
-        "18": 8
-      },
-      "porcentajeConsumo": 100
-    },
-    {
-      "producto": "Pricesmart",
-      "categoria": "PLATINUM",
-      "fecha": "2026-06-02",
-      "totalClientes": 2,
-      "topeDiario": 1,
-      "horaTope": 16,
-      "acumuladoPorHora": {
-        "16": 2
-      },
-      "porcentajeConsumo": 200
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "INFINITE",
-      "fecha": "2026-06-03",
-      "totalClientes": 25,
-      "topeDiario": 25,
-      "horaTope": 13,
-      "acumuladoPorHora": {
-        "0": 7,
-        "10": 10,
-        "11": 16,
-        "12": 20,
-        "13": 25
-      },
-      "porcentajeConsumo": 100
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "PLATINUM",
-      "fecha": "2026-06-03",
-      "totalClientes": 64,
-      "topeDiario": 64,
-      "horaTope": 17,
-      "acumuladoPorHora": {
-        "0": 7,
-        "1": 8,
-        "2": 9,
-        "4": 10,
-        "5": 14,
-        "6": 19,
-        "11": 27,
-        "12": 35,
-        "13": 41,
-        "14": 46,
-        "15": 53,
-        "16": 61,
-        "17": 64
-      },
-      "porcentajeConsumo": 100
-    },
-    {
-      "producto": "Cencosud",
-      "categoria": "INFINITE",
-      "fecha": "2026-06-03",
-      "totalClientes": 5,
-      "topeDiario": 5,
-      "horaTope": 11,
-      "acumuladoPorHora": {
-        "0": 1,
-        "10": 3,
-        "11": 5
-      },
-      "porcentajeConsumo": 100
-    },
-    {
-      "producto": "Cencosud",
-      "categoria": "PLATINUM",
-      "fecha": "2026-06-03",
-      "totalClientes": 17,
-      "topeDiario": 17,
-      "horaTope": 18,
-      "acumuladoPorHora": {
-        "0": 1,
-        "6": 2,
-        "7": 4,
-        "8": 5,
-        "11": 7,
-        "12": 10,
-        "13": 11,
-        "14": 13,
-        "16": 15,
-        "17": 16,
-        "18": 17
-      },
-      "porcentajeConsumo": 100
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "BLACK",
-      "fecha": "2026-06-03",
-      "totalClientes": 15,
-      "topeDiario": 15,
-      "horaTope": 13,
-      "acumuladoPorHora": {
-        "0": 3,
-        "3": 4,
-        "10": 11,
-        "11": 12,
-        "12": 13,
-        "13": 15
-      },
-      "porcentajeConsumo": 100
-    },
-    {
-      "producto": "Pricesmart",
-      "categoria": "SIGNATURE",
-      "fecha": "2026-06-03",
-      "totalClientes": 7,
-      "topeDiario": 7,
-      "horaTope": 20,
-      "acumuladoPorHora": {
-        "0": 1,
-        "8": 2,
-        "11": 3,
-        "12": 5,
-        "18": 6,
-        "20": 7
-      },
-      "porcentajeConsumo": 100
-    },
-    {
-      "producto": "Pricesmart",
-      "categoria": "PLATINUM",
-      "fecha": "2026-06-03",
-      "totalClientes": 2,
-      "topeDiario": 8,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "8": 1,
-        "13": 2
-      },
-      "porcentajeConsumo": 25
-    },
-    {
-      "producto": "Cencosud",
-      "categoria": "ORO",
-      "fecha": "2026-06-03",
-      "totalClientes": 10,
-      "topeDiario": 37,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "8": 3,
-        "9": 4,
-        "13": 5,
-        "18": 7,
-        "19": 8,
-        "20": 9,
-        "21": 10
-      },
-      "porcentajeConsumo": 27
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "ORO",
-      "fecha": "2026-06-03",
-      "totalClientes": 9,
-      "topeDiario": 25,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "8": 1,
-        "9": 3,
-        "10": 6,
-        "11": 7,
-        "13": 8,
-        "15": 9
-      },
-      "porcentajeConsumo": 36
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "SIGNATURE",
-      "fecha": "2026-06-03",
-      "totalClientes": 6,
-      "topeDiario": 11,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "9": 1,
-        "10": 2,
-        "14": 3,
-        "15": 5,
-        "19": 6
-      },
-      "porcentajeConsumo": 55
-    },
-    {
-      "producto": "Pricesmart",
-      "categoria": "ORO",
-      "fecha": "2026-06-03",
-      "totalClientes": 2,
-      "topeDiario": 26,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "12": 2
-      },
-      "porcentajeConsumo": 8
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "INFINITE",
-      "fecha": "2026-06-04",
-      "totalClientes": 25,
-      "topeDiario": 25,
-      "horaTope": 8,
-      "acumuladoPorHora": {
-        "0": 9,
-        "1": 10,
-        "2": 13,
-        "3": 14,
-        "4": 16,
-        "5": 18,
-        "6": 19,
-        "7": 24,
-        "8": 25
-      },
-      "porcentajeConsumo": 100
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "PLATINUM",
-      "fecha": "2026-06-04",
-      "totalClientes": 64,
-      "topeDiario": 64,
-      "horaTope": 19,
-      "acumuladoPorHora": {
-        "0": 5,
-        "6": 6,
-        "7": 9,
-        "8": 18,
-        "9": 25,
-        "10": 32,
-        "11": 35,
-        "12": 39,
-        "13": 41,
-        "14": 45,
-        "15": 50,
-        "16": 56,
-        "17": 62,
-        "18": 63,
-        "19": 64
-      },
-      "porcentajeConsumo": 100
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "BLACK",
-      "fecha": "2026-06-04",
-      "totalClientes": 15,
-      "topeDiario": 15,
-      "horaTope": 9,
-      "acumuladoPorHora": {
-        "0": 1,
-        "2": 3,
-        "3": 4,
-        "4": 5,
-        "5": 6,
-        "7": 7,
-        "8": 14,
-        "9": 15
-      },
-      "porcentajeConsumo": 100
-    },
-    {
-      "producto": "Cencosud",
-      "categoria": "INFINITE",
-      "fecha": "2026-06-04",
-      "totalClientes": 5,
-      "topeDiario": 5,
-      "horaTope": 3,
-      "acumuladoPorHora": {
-        "0": 2,
-        "2": 3,
-        "3": 5
-      },
-      "porcentajeConsumo": 100
-    },
-    {
-      "producto": "Pricesmart",
-      "categoria": "SIGNATURE",
-      "fecha": "2026-06-04",
-      "totalClientes": 5,
-      "topeDiario": 7,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "5": 1,
-        "13": 2,
-        "16": 3,
-        "17": 4,
-        "18": 5
-      },
-      "porcentajeConsumo": 71
-    },
-    {
-      "producto": "Cencosud",
-      "categoria": "PLATINUM",
-      "fecha": "2026-06-04",
-      "totalClientes": 8,
-      "topeDiario": 17,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "8": 1,
-        "9": 2,
-        "10": 3,
-        "11": 4,
-        "13": 5,
-        "15": 6,
-        "20": 8
-      },
-      "porcentajeConsumo": 47
-    },
-    {
-      "producto": "Pricesmart",
-      "categoria": "ORO",
-      "fecha": "2026-06-04",
-      "totalClientes": 5,
-      "topeDiario": 26,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "8": 1,
-        "9": 2,
-        "11": 4,
-        "12": 5
-      },
-      "porcentajeConsumo": 19
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "ORO",
-      "fecha": "2026-06-04",
-      "totalClientes": 10,
-      "topeDiario": 25,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "9": 1,
-        "10": 3,
-        "11": 4,
-        "13": 7,
-        "16": 9,
-        "17": 10
-      },
-      "porcentajeConsumo": 40
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "SIGNATURE",
-      "fecha": "2026-06-04",
-      "totalClientes": 5,
-      "topeDiario": 11,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "10": 2,
-        "11": 3,
-        "15": 4,
-        "18": 5
-      },
-      "porcentajeConsumo": 45
-    },
-    {
-      "producto": "Pricesmart",
-      "categoria": "PLATINUM",
-      "fecha": "2026-06-04",
-      "totalClientes": 1,
-      "topeDiario": 8,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "10": 1
-      },
-      "porcentajeConsumo": 13
-    },
-    {
-      "producto": "Cencosud",
-      "categoria": "ORO",
-      "fecha": "2026-06-04",
-      "totalClientes": 3,
-      "topeDiario": 37,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "11": 1,
-        "12": 2,
-        "15": 3
-      },
-      "porcentajeConsumo": 8
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "CLASICA",
-      "fecha": "2026-06-04",
-      "totalClientes": 1,
-      "topeDiario": 27,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "14": 1
-      },
-      "porcentajeConsumo": 4
-    },
-    {
-      "producto": "Cencosud",
-      "categoria": "CLASICA",
-      "fecha": "2026-06-04",
-      "totalClientes": 1,
-      "topeDiario": 26,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "15": 1
-      },
-      "porcentajeConsumo": 4
-    },
-    {
-      "producto": "Cencosud",
-      "categoria": "INFINITE",
-      "fecha": "2026-06-05",
-      "totalClientes": 5,
-      "topeDiario": 5,
-      "horaTope": 0,
-      "acumuladoPorHora": {
-        "0": 5
-      },
-      "porcentajeConsumo": 100
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "INFINITE",
-      "fecha": "2026-06-05",
-      "totalClientes": 25,
-      "topeDiario": 25,
-      "horaTope": 9,
-      "acumuladoPorHora": {
-        "0": 4,
-        "1": 5,
-        "4": 6,
-        "5": 7,
-        "6": 11,
-        "7": 12,
-        "8": 21,
-        "9": 25
-      },
-      "porcentajeConsumo": 100
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "PLATINUM",
-      "fecha": "2026-06-05",
-      "totalClientes": 48,
-      "topeDiario": 64,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "1": 1,
-        "7": 2,
-        "8": 6,
-        "9": 12,
-        "10": 16,
-        "11": 21,
-        "12": 24,
-        "13": 27,
-        "14": 29,
-        "15": 34,
-        "16": 38,
-        "17": 44,
-        "18": 45,
-        "19": 46,
-        "20": 47,
-        "21": 48
-      },
-      "porcentajeConsumo": 75
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "CLASICA",
-      "fecha": "2026-06-05",
-      "totalClientes": 4,
-      "topeDiario": 27,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "3": 1,
-        "15": 3,
-        "17": 4
-      },
-      "porcentajeConsumo": 15
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "BLACK",
-      "fecha": "2026-06-05",
-      "totalClientes": 15,
-      "topeDiario": 15,
-      "horaTope": 13,
-      "acumuladoPorHora": {
-        "5": 1,
-        "6": 3,
-        "7": 5,
-        "9": 6,
-        "10": 8,
-        "11": 12,
-        "12": 13,
-        "13": 15
-      },
-      "porcentajeConsumo": 100
-    },
-    {
-      "producto": "Cencosud",
-      "categoria": "PLATINUM",
-      "fecha": "2026-06-05",
-      "totalClientes": 9,
-      "topeDiario": 17,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "7": 1,
-        "8": 2,
-        "10": 3,
-        "11": 4,
-        "14": 6,
-        "16": 8,
-        "18": 9
-      },
-      "porcentajeConsumo": 53
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "ORO",
-      "fecha": "2026-06-05",
-      "totalClientes": 11,
-      "topeDiario": 25,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "8": 2,
-        "9": 4,
-        "12": 5,
-        "13": 7,
-        "15": 8,
-        "17": 10,
-        "21": 11
-      },
-      "porcentajeConsumo": 44
-    },
-    {
-      "producto": "Cencosud",
-      "categoria": "ORO",
-      "fecha": "2026-06-05",
-      "totalClientes": 8,
-      "topeDiario": 37,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "8": 1,
-        "9": 2,
-        "10": 5,
-        "14": 6,
-        "16": 7,
-        "21": 8
-      },
-      "porcentajeConsumo": 22
-    },
-    {
-      "producto": "Pricesmart",
-      "categoria": "SIGNATURE",
-      "fecha": "2026-06-05",
-      "totalClientes": 1,
-      "topeDiario": 7,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "8": 1
-      },
-      "porcentajeConsumo": 14
-    },
-    {
-      "producto": "Cencosud",
-      "categoria": "CLASICA",
-      "fecha": "2026-06-05",
-      "totalClientes": 1,
-      "topeDiario": 26,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "9": 1
-      },
-      "porcentajeConsumo": 4
-    },
-    {
-      "producto": "Pricesmart",
-      "categoria": "PLATINUM",
-      "fecha": "2026-06-05",
-      "totalClientes": 3,
-      "topeDiario": 8,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "10": 1,
-        "12": 2,
-        "13": 3
-      },
-      "porcentajeConsumo": 38
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "SIGNATURE",
-      "fecha": "2026-06-05",
-      "totalClientes": 4,
-      "topeDiario": 11,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "10": 1,
-        "11": 2,
-        "12": 3,
-        "13": 4
-      },
-      "porcentajeConsumo": 36
-    },
-    {
-      "producto": "Cencosud",
-      "categoria": "INFINITE",
-      "fecha": "2026-06-06",
-      "totalClientes": 10,
-      "topeDiario": 15,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "0": 1,
-        "1": 2,
-        "6": 4,
-        "7": 5,
-        "8": 6,
-        "9": 7,
-        "12": 8,
-        "15": 9,
-        "18": 10
-      },
-      "porcentajeConsumo": 67
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "INFINITE",
-      "fecha": "2026-06-06",
-      "totalClientes": 16,
-      "topeDiario": 30,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "2": 1,
-        "3": 2,
-        "7": 5,
-        "8": 6,
-        "9": 7,
-        "10": 12,
-        "11": 13,
-        "12": 14,
-        "15": 16
-      },
-      "porcentajeConsumo": 53
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "PLATINUM",
-      "fecha": "2026-06-06",
-      "totalClientes": 19,
-      "topeDiario": 47,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "5": 1,
-        "6": 2,
-        "7": 3,
-        "9": 7,
-        "10": 9,
-        "11": 11,
-        "12": 12,
-        "13": 13,
-        "14": 14,
-        "17": 15,
-        "18": 17,
-        "19": 19
-      },
-      "porcentajeConsumo": 40
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "BLACK",
-      "fecha": "2026-06-06",
-      "totalClientes": 14,
-      "topeDiario": 23,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "6": 1,
-        "7": 3,
-        "8": 4,
-        "9": 5,
-        "10": 8,
-        "11": 9,
-        "12": 11,
-        "13": 12,
-        "15": 13,
-        "20": 14
-      },
-      "porcentajeConsumo": 61
-    },
-    {
-      "producto": "Pricesmart",
-      "categoria": "SIGNATURE",
-      "fecha": "2026-06-06",
-      "totalClientes": 2,
-      "topeDiario": 10,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "7": 1,
-        "8": 2
-      },
-      "porcentajeConsumo": 20
-    },
-    {
-      "producto": "Cencosud",
-      "categoria": "PLATINUM",
-      "fecha": "2026-06-06",
-      "totalClientes": 2,
-      "topeDiario": 9,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "9": 1,
-        "10": 2
-      },
-      "porcentajeConsumo": 22
-    },
-    {
-      "producto": "Cencosud",
-      "categoria": "ORO",
-      "fecha": "2026-06-06",
-      "totalClientes": 1,
-      "topeDiario": 7,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "9": 1
-      },
-      "porcentajeConsumo": 14
-    },
-    {
-      "producto": "Pricesmart",
-      "categoria": "ORO",
-      "fecha": "2026-06-06",
-      "totalClientes": 2,
-      "topeDiario": 3,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "9": 1,
-        "13": 2
-      },
-      "porcentajeConsumo": 67
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "SIGNATURE",
-      "fecha": "2026-06-06",
-      "totalClientes": 2,
-      "topeDiario": 7,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "9": 1,
-        "23": 2
-      },
-      "porcentajeConsumo": 29
-    },
-    {
-      "producto": "Pricesmart",
-      "categoria": "PLATINUM",
-      "fecha": "2026-06-06",
-      "totalClientes": 1,
-      "topeDiario": 3,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "14": 1
-      },
-      "porcentajeConsumo": 33
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "BLACK",
-      "fecha": "2026-06-07",
-      "totalClientes": 4,
-      "topeDiario": 23,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "7": 1,
-        "14": 2,
-        "17": 3,
-        "18": 4
-      },
-      "porcentajeConsumo": 17
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "PLATINUM",
-      "fecha": "2026-06-07",
-      "totalClientes": 11,
-      "topeDiario": 47,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "8": 1,
-        "10": 2,
-        "12": 3,
-        "13": 4,
-        "14": 6,
-        "15": 9,
-        "16": 10,
-        "21": 11
-      },
-      "porcentajeConsumo": 23
-    },
-    {
-      "producto": "Cencosud",
-      "categoria": "ORO",
-      "fecha": "2026-06-07",
-      "totalClientes": 3,
-      "topeDiario": 7,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "8": 1,
-        "13": 2,
-        "14": 3
-      },
-      "porcentajeConsumo": 43
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "ORO",
-      "fecha": "2026-06-07",
-      "totalClientes": 4,
-      "topeDiario": 11,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "9": 1,
-        "10": 2,
-        "18": 3,
-        "21": 4
-      },
-      "porcentajeConsumo": 36
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "INFINITE",
-      "fecha": "2026-06-07",
-      "totalClientes": 6,
-      "topeDiario": 30,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "10": 2,
-        "11": 3,
-        "12": 4,
-        "18": 5,
-        "20": 6
-      },
-      "porcentajeConsumo": 20
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "EMPRESARIAL",
-      "fecha": "2026-06-07",
-      "totalClientes": 1,
-      "topeDiario": 6,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "10": 1
-      },
-      "porcentajeConsumo": 17
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "SIGNATURE",
-      "fecha": "2026-06-07",
-      "totalClientes": 1,
-      "topeDiario": 7,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "11": 1
-      },
-      "porcentajeConsumo": 14
-    },
-    {
-      "producto": "Pricesmart",
-      "categoria": "PLATINUM",
-      "fecha": "2026-06-07",
-      "totalClientes": 1,
-      "topeDiario": 3,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "13": 1
-      },
-      "porcentajeConsumo": 33
-    },
-    {
-      "producto": "Cencosud",
-      "categoria": "INFINITE",
-      "fecha": "2026-06-07",
-      "totalClientes": 1,
-      "topeDiario": 15,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "20": 1
-      },
-      "porcentajeConsumo": 7
-    },
-    {
-      "producto": "Cencosud",
-      "categoria": "PLATINUM",
-      "fecha": "2026-06-07",
-      "totalClientes": 1,
-      "topeDiario": 9,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "22": 1
-      },
-      "porcentajeConsumo": 11
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "INFINITE",
-      "fecha": "2026-06-08",
-      "totalClientes": 11,
-      "topeDiario": 30,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "0": 1,
-        "9": 3,
-        "10": 6,
-        "12": 7,
-        "13": 8,
-        "16": 10,
-        "20": 11
-      },
-      "porcentajeConsumo": 37
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "BLACK",
-      "fecha": "2026-06-08",
-      "totalClientes": 7,
-      "topeDiario": 23,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "4": 1,
-        "10": 3,
-        "13": 4,
-        "15": 5,
-        "16": 6,
-        "18": 7
-      },
-      "porcentajeConsumo": 30
-    },
-    {
-      "producto": "Cencosud",
-      "categoria": "PLATINUM",
-      "fecha": "2026-06-08",
-      "totalClientes": 7,
-      "topeDiario": 9,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "9": 1,
-        "10": 2,
-        "14": 4,
-        "19": 5,
-        "22": 6,
-        "23": 7
-      },
-      "porcentajeConsumo": 78
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "PLATINUM",
-      "fecha": "2026-06-08",
-      "totalClientes": 17,
-      "topeDiario": 47,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "9": 4,
-        "10": 7,
-        "11": 10,
-        "13": 11,
-        "15": 12,
-        "16": 14,
-        "17": 16,
-        "21": 17
-      },
-      "porcentajeConsumo": 36
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "CLASICA",
-      "fecha": "2026-06-08",
-      "totalClientes": 2,
-      "topeDiario": 3,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "10": 1,
-        "19": 2
-      },
-      "porcentajeConsumo": 67
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "SIGNATURE",
-      "fecha": "2026-06-08",
-      "totalClientes": 1,
-      "topeDiario": 7,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "10": 1
-      },
-      "porcentajeConsumo": 14
-    },
-    {
-      "producto": "Cencosud",
-      "categoria": "ORO",
-      "fecha": "2026-06-08",
-      "totalClientes": 1,
-      "topeDiario": 7,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "14": 1
-      },
-      "porcentajeConsumo": 14
-    },
-    {
-      "producto": "Cencosud",
-      "categoria": "INFINITE",
-      "fecha": "2026-06-08",
-      "totalClientes": 1,
-      "topeDiario": 15,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "15": 1
-      },
-      "porcentajeConsumo": 7
-    },
-    {
-      "producto": "Pricesmart",
-      "categoria": "PLATINUM",
-      "fecha": "2026-06-08",
-      "totalClientes": 2,
-      "topeDiario": 3,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "15": 1,
-        "17": 2
-      },
-      "porcentajeConsumo": 67
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "EMPRESARIAL",
-      "fecha": "2026-06-08",
-      "totalClientes": 1,
-      "topeDiario": 6,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "19": 1
-      },
-      "porcentajeConsumo": 17
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "ORO",
-      "fecha": "2026-06-08",
-      "totalClientes": 1,
-      "topeDiario": 11,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "21": 1
-      },
-      "porcentajeConsumo": 9
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "PLATINUM",
-      "fecha": "2026-06-09",
-      "totalClientes": 47,
-      "topeDiario": 47,
-      "horaTope": 17,
-      "acumuladoPorHora": {
-        "2": 1,
-        "5": 2,
-        "7": 3,
-        "8": 13,
-        "9": 22,
-        "10": 26,
-        "11": 28,
-        "12": 31,
-        "13": 32,
-        "14": 34,
-        "15": 36,
-        "16": 46,
-        "17": 47
-      },
-      "porcentajeConsumo": 100
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "INFINITE",
-      "fecha": "2026-06-09",
-      "totalClientes": 30,
-      "topeDiario": 30,
-      "horaTope": 11,
-      "acumuladoPorHora": {
-        "2": 1,
-        "7": 4,
-        "8": 12,
-        "9": 17,
-        "10": 28,
-        "11": 30
-      },
-      "porcentajeConsumo": 100
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "ORO",
-      "fecha": "2026-06-09",
-      "totalClientes": 11,
-      "topeDiario": 11,
-      "horaTope": 22,
-      "acumuladoPorHora": {
-        "7": 1,
-        "11": 3,
-        "12": 4,
-        "16": 8,
-        "18": 9,
-        "22": 11
-      },
-      "porcentajeConsumo": 100
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "BLACK",
-      "fecha": "2026-06-09",
-      "totalClientes": 23,
-      "topeDiario": 23,
-      "horaTope": 20,
-      "acumuladoPorHora": {
-        "8": 2,
-        "9": 6,
-        "10": 7,
-        "11": 9,
-        "12": 14,
-        "13": 16,
-        "14": 17,
-        "15": 19,
-        "16": 20,
-        "17": 21,
-        "19": 22,
-        "20": 23
-      },
-      "porcentajeConsumo": 100
-    },
-    {
-      "producto": "Cencosud",
-      "categoria": "INFINITE",
-      "fecha": "2026-06-09",
-      "totalClientes": 15,
-      "topeDiario": 15,
-      "horaTope": 21,
-      "acumuladoPorHora": {
-        "8": 4,
-        "9": 6,
-        "10": 8,
-        "11": 9,
-        "13": 10,
-        "14": 11,
-        "15": 12,
-        "16": 13,
-        "21": 15
-      },
-      "porcentajeConsumo": 100
-    },
-    {
-      "producto": "Cencosud",
-      "categoria": "PLATINUM",
-      "fecha": "2026-06-09",
-      "totalClientes": 9,
-      "topeDiario": 9,
-      "horaTope": 14,
-      "acumuladoPorHora": {
-        "8": 1,
-        "9": 2,
-        "11": 4,
-        "12": 6,
-        "13": 8,
-        "14": 9
-      },
-      "porcentajeConsumo": 100
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "SIGNATURE",
-      "fecha": "2026-06-09",
-      "totalClientes": 6,
-      "topeDiario": 7,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "8": 1,
-        "9": 2,
-        "10": 3,
-        "13": 5,
-        "14": 6
-      },
-      "porcentajeConsumo": 86
-    },
-    {
-      "producto": "Cencosud",
-      "categoria": "ORO",
-      "fecha": "2026-06-09",
-      "totalClientes": 7,
-      "topeDiario": 7,
-      "horaTope": 23,
-      "acumuladoPorHora": {
-        "10": 2,
-        "15": 3,
-        "16": 6,
-        "23": 7
-      },
-      "porcentajeConsumo": 100
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "CLASICA",
-      "fecha": "2026-06-09",
-      "totalClientes": 2,
-      "topeDiario": 3,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "13": 1,
-        "23": 2
-      },
-      "porcentajeConsumo": 67
-    },
-    {
-      "producto": "Pricesmart",
-      "categoria": "SIGNATURE",
-      "fecha": "2026-06-09",
-      "totalClientes": 1,
-      "topeDiario": 10,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "16": 1
-      },
-      "porcentajeConsumo": 10
-    },
-    {
-      "producto": "Pricesmart",
-      "categoria": "ORO",
-      "fecha": "2026-06-09",
-      "totalClientes": 1,
-      "topeDiario": 3,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "20": 1
-      },
-      "porcentajeConsumo": 33
-    },
-    {
-      "producto": "Pricesmart",
-      "categoria": "PLATINUM",
-      "fecha": "2026-06-09",
-      "totalClientes": 2,
-      "topeDiario": 3,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "22": 1,
-        "23": 2
-      },
-      "porcentajeConsumo": 67
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "INFINITE",
-      "fecha": "2026-06-10",
-      "totalClientes": 30,
-      "topeDiario": 30,
-      "horaTope": 11,
-      "acumuladoPorHora": {
-        "0": 4,
-        "5": 6,
-        "6": 7,
-        "7": 10,
-        "8": 16,
-        "9": 19,
-        "10": 29,
-        "11": 30
-      },
-      "porcentajeConsumo": 100
-    },
-    {
-      "producto": "Cencosud",
-      "categoria": "PLATINUM",
-      "fecha": "2026-06-10",
-      "totalClientes": 9,
-      "topeDiario": 9,
-      "horaTope": 11,
-      "acumuladoPorHora": {
-        "0": 2,
-        "4": 3,
-        "8": 4,
-        "9": 6,
-        "10": 7,
-        "11": 9
-      },
-      "porcentajeConsumo": 100
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "PLATINUM",
-      "fecha": "2026-06-10",
-      "totalClientes": 47,
-      "topeDiario": 47,
-      "horaTope": 14,
-      "acumuladoPorHora": {
-        "1": 1,
-        "3": 2,
-        "5": 3,
-        "7": 8,
-        "8": 14,
-        "9": 17,
-        "10": 25,
-        "11": 33,
-        "12": 39,
-        "13": 45,
-        "14": 47
-      },
-      "porcentajeConsumo": 100
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "BLACK",
-      "fecha": "2026-06-10",
-      "totalClientes": 23,
-      "topeDiario": 23,
-      "horaTope": 15,
-      "acumuladoPorHora": {
-        "6": 1,
-        "7": 3,
-        "8": 7,
-        "9": 9,
-        "10": 13,
-        "11": 17,
-        "12": 19,
-        "13": 21,
-        "14": 22,
-        "15": 23
-      },
-      "porcentajeConsumo": 100
-    },
-    {
-      "producto": "Cencosud",
-      "categoria": "INFINITE",
-      "fecha": "2026-06-10",
-      "totalClientes": 15,
-      "topeDiario": 15,
-      "horaTope": 17,
-      "acumuladoPorHora": {
-        "7": 1,
-        "8": 2,
-        "9": 3,
-        "10": 5,
-        "11": 9,
-        "13": 11,
-        "14": 12,
-        "15": 14,
-        "17": 15
-      },
-      "porcentajeConsumo": 100
-    },
-    {
-      "producto": "Pricesmart",
-      "categoria": "SIGNATURE",
-      "fecha": "2026-06-10",
-      "totalClientes": 6,
-      "topeDiario": 10,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "7": 2,
-        "8": 3,
-        "13": 4,
-        "19": 5,
-        "21": 6
-      },
-      "porcentajeConsumo": 60
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "SIGNATURE",
-      "fecha": "2026-06-10",
-      "totalClientes": 5,
-      "topeDiario": 7,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "9": 2,
-        "15": 4,
-        "16": 5
-      },
-      "porcentajeConsumo": 71
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "ORO",
-      "fecha": "2026-06-10",
-      "totalClientes": 6,
-      "topeDiario": 11,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "9": 1,
-        "10": 2,
-        "11": 3,
-        "13": 4,
-        "16": 5,
-        "17": 6
-      },
-      "porcentajeConsumo": 55
-    },
-    {
-      "producto": "Cencosud",
-      "categoria": "ORO",
-      "fecha": "2026-06-10",
-      "totalClientes": 6,
-      "topeDiario": 7,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "9": 1,
-        "11": 3,
-        "16": 4,
-        "20": 6
-      },
-      "porcentajeConsumo": 86
-    },
-    {
-      "producto": "Pricesmart",
-      "categoria": "PLATINUM",
-      "fecha": "2026-06-10",
-      "totalClientes": 3,
-      "topeDiario": 3,
-      "horaTope": 17,
-      "acumuladoPorHora": {
-        "9": 1,
-        "16": 2,
-        "17": 3
-      },
-      "porcentajeConsumo": 100
-    },
-    {
-      "producto": "Pricesmart",
-      "categoria": "ORO",
-      "fecha": "2026-06-10",
-      "totalClientes": 3,
-      "topeDiario": 3,
-      "horaTope": 15,
-      "acumuladoPorHora": {
-        "11": 1,
-        "13": 2,
-        "15": 3
-      },
-      "porcentajeConsumo": 100
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "INFINITE",
-      "fecha": "2026-06-11",
-      "totalClientes": 31,
-      "topeDiario": 30,
-      "horaTope": 9,
-      "acumuladoPorHora": {
-        "0": 4,
-        "3": 6,
-        "5": 7,
-        "6": 8,
-        "7": 11,
-        "8": 18,
-        "9": 31
-      },
-      "porcentajeConsumo": 103
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "PLATINUM",
-      "fecha": "2026-06-11",
-      "totalClientes": 25,
-      "topeDiario": 47,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "0": 3,
-        "1": 6,
-        "3": 7,
-        "6": 9,
-        "7": 13,
-        "8": 20,
-        "9": 25
-      },
-      "porcentajeConsumo": 53
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "BLACK",
-      "fecha": "2026-06-11",
-      "totalClientes": 9,
-      "topeDiario": 23,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "0": 2,
-        "7": 3,
-        "8": 6,
-        "9": 9
-      },
-      "porcentajeConsumo": 39
-    },
-    {
-      "producto": "Cencosud",
-      "categoria": "ORO",
-      "fecha": "2026-06-11",
-      "totalClientes": 3,
-      "topeDiario": 7,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "0": 1,
-        "7": 2,
-        "9": 3
-      },
-      "porcentajeConsumo": 43
-    },
-    {
-      "producto": "Cencosud",
-      "categoria": "INFINITE",
-      "fecha": "2026-06-11",
-      "totalClientes": 4,
-      "topeDiario": 15,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "1": 1,
-        "5": 2,
-        "8": 3,
-        "10": 4
-      },
-      "porcentajeConsumo": 27
-    },
-    {
-      "producto": "Cencosud",
-      "categoria": "PLATINUM",
-      "fecha": "2026-06-11",
-      "totalClientes": 6,
-      "topeDiario": 9,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "6": 2,
-        "9": 6
-      },
-      "porcentajeConsumo": 67
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "SIGNATURE",
-      "fecha": "2026-06-11",
-      "totalClientes": 2,
-      "topeDiario": 7,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "6": 1,
-        "8": 2
-      },
-      "porcentajeConsumo": 29
-    },
-    {
-      "producto": "Pricesmart",
-      "categoria": "PLATINUM",
-      "fecha": "2026-06-11",
-      "totalClientes": 3,
-      "topeDiario": 3,
-      "horaTope": 10,
-      "acumuladoPorHora": {
-        "7": 1,
-        "9": 2,
-        "10": 3
-      },
-      "porcentajeConsumo": 100
-    },
-    {
-      "producto": "Pricesmart",
-      "categoria": "SIGNATURE",
-      "fecha": "2026-06-11",
-      "totalClientes": 1,
-      "topeDiario": 10,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "7": 1
-      },
-      "porcentajeConsumo": 10
-    },
-    {
-      "producto": "Pricesmart",
-      "categoria": "ORO",
-      "fecha": "2026-06-11",
-      "totalClientes": 2,
-      "topeDiario": 3,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "8": 1,
-        "9": 2
-      },
-      "porcentajeConsumo": 67
-    },
-    {
-      "producto": "Otras marcas",
-      "categoria": "ORO",
-      "fecha": "2026-06-11",
-      "totalClientes": 2,
-      "topeDiario": 11,
-      "horaTope": null,
-      "acumuladoPorHora": {
-        "8": 2
-      },
-      "porcentajeConsumo": 18
-    }
-  ],
-  "transaccionesTotal": 1110
-};
-    const PORCENTAJES = {"Otras marcas|CLASICA":{"producto":"Otras marcas","categoria":"CLASICA","pctProducto":0.581795855,"pctCategoria":0.1375052767,"cantDiariaBase10k":26.66666667},"Otras marcas|ORO":{"producto":"Otras marcas","categoria":"ORO","pctProducto":0.581795855,"pctCategoria":0.1323545928,"cantDiariaBase10k":25.66778449},"Otras marcas|PLATINUM":{"producto":"Otras marcas","categoria":"PLATINUM","pctProducto":0.581795855,"pctCategoria":0.3299720194,"cantDiariaBase10k":63.99211772},"Otras marcas|SIGNATURE":{"producto":"Otras marcas","categoria":"SIGNATURE","pctProducto":0.581795855,"pctCategoria":0.05769278785,"cantDiariaBase10k":11.18847495},"Otras marcas|INFINITE":{"producto":"Otras marcas","categoria":"INFINITE","pctProducto":0.581795855,"pctCategoria":0.1331281423,"cantDiariaBase10k":25.81780046},"Otras marcas|BLACK":{"producto":"Otras marcas","categoria":"BLACK","pctProducto":0.581795855,"pctCategoria":0.07699258824,"cantDiariaBase10k":14.9313229},"Otras marcas|EMPRESARIAL":{"producto":"Otras marcas","categoria":"EMPRESARIAL","pctProducto":0.581795855,"pctCategoria":0.1323545928,"cantDiariaBase10k":25.66778449},"Metal|METAL":{"producto":"Metal","categoria":"METAL","pctProducto":0.01,"pctCategoria":1,"cantDiariaBase10k":3.333333333},"Terpel|CLASICA":{"producto":"Terpel","categoria":"CLASICA","pctProducto":0.02,"pctCategoria":0.5,"cantDiariaBase10k":3.333333333},"Terpel|ORO":{"producto":"Terpel","categoria":"ORO","pctProducto":0.02,"pctCategoria":0.5,"cantDiariaBase10k":3.333333333},"Cencosud|CLASICA":{"producto":"Cencosud","categoria":"CLASICA","pctProducto":0.2611337655,"pctCategoria":0.3012186845,"cantDiariaBase10k":26.21945644},"Cencosud|ORO":{"producto":"Cencosud","categoria":"ORO","pctProducto":0.2611337655,"pctCategoria":0.4331553011,"cantDiariaBase10k":37.70382494},"Cencosud|PLATINUM":{"producto":"Cencosud","categoria":"PLATINUM","pctProducto":0.2611337655,"pctCategoria":0.2037652336,"cantDiariaBase10k":17.7366609},"Cencosud|INFINITE":{"producto":"Cencosud","categoria":"INFINITE","pctProducto":0.2611337655,"pctCategoria":0.06186078078,"cantDiariaBase10k":5.384646207},"Pricesmart|ORO":{"producto":"Pricesmart","categoria":"ORO","pctProducto":0.127,"pctCategoria":0.6220472441,"cantDiariaBase10k":26.33333333},"Pricesmart|PLATINUM":{"producto":"Pricesmart","categoria":"PLATINUM","pctProducto":0.127,"pctCategoria":0.2047244094,"cantDiariaBase10k":8.666666667},"Pricesmart|SIGNATURE":{"producto":"Pricesmart","categoria":"SIGNATURE","pctProducto":0.127,"pctCategoria":0.1732283465,"cantDiariaBase10k":7.333333333}};
-    const TOPE_MENSUAL_ORIGINAL = 10000;
+    'use strict';
 
-    // --- Estado global del simulador ---
-    let simulatedTopesActive = false;
-    let simulatedTopesMap = {}; // { "producto|categoria": nuevoTopeDiario }
+    // --- Datos embebidos en build time ---
+    var DASHBOARD_DATA = {"generado":"2026-06-11T19:19:37.001Z","fechas":["2026-06-01","2026-06-02","2026-06-03","2026-06-04","2026-06-05","2026-06-06","2026-06-07","2026-06-08","2026-06-09","2026-06-10"],"productos":["Cencosud","Otras marcas","Pricesmart"],"categorias":["BLACK","CLASICA","EMPRESARIAL","INFINITE","ORO","PLATINUM","SIGNATURE"],"resultados":[{"producto":"Otras marcas","categoria":"PLATINUM","fecha":"2026-06-01","totalClientes":19,"topeDiario":14,"horaTope":16,"acumuladoPorHora":{"7":1,"8":8,"15":13,"16":19},"porcentajeConsumo":136},{"producto":"Otras marcas","categoria":"INFINITE","fecha":"2026-06-01","totalClientes":7,"topeDiario":5,"horaTope":15,"acumuladoPorHora":{"8":3,"15":6,"16":7},"porcentajeConsumo":140},{"producto":"Otras marcas","categoria":"SIGNATURE","fecha":"2026-06-01","totalClientes":3,"topeDiario":2,"horaTope":16,"acumuladoPorHora":{"8":1,"16":3},"porcentajeConsumo":150},{"producto":"Otras marcas","categoria":"BLACK","fecha":"2026-06-01","totalClientes":4,"topeDiario":3,"horaTope":15,"acumuladoPorHora":{"8":2,"15":3,"16":4},"porcentajeConsumo":133},{"producto":"Otras marcas","categoria":"ORO","fecha":"2026-06-01","totalClientes":6,"topeDiario":5,"horaTope":18,"acumuladoPorHora":{"8":1,"9":2,"10":3,"15":4,"18":5,"19":6},"porcentajeConsumo":120},{"producto":"Cencosud","categoria":"PLATINUM","fecha":"2026-06-01","totalClientes":5,"topeDiario":4,"horaTope":16,"acumuladoPorHora":{"8":1,"15":3,"16":5},"porcentajeConsumo":125},{"producto":"Cencosud","categoria":"ORO","fecha":"2026-06-01","totalClientes":4,"topeDiario":8,"horaTope":null,"acumuladoPorHora":{"12":1,"13":2,"16":3,"21":4},"porcentajeConsumo":50},{"producto":"Cencosud","categoria":"INFINITE","fecha":"2026-06-01","totalClientes":1,"topeDiario":1,"horaTope":15,"acumuladoPorHora":{"15":1},"porcentajeConsumo":100},{"producto":"Pricesmart","categoria":"ORO","fecha":"2026-06-01","totalClientes":2,"topeDiario":6,"horaTope":null,"acumuladoPorHora":{"20":2},"porcentajeConsumo":33},{"producto":"Otras marcas","categoria":"BLACK","fecha":"2026-06-02","totalClientes":4,"topeDiario":3,"horaTope":5,"acumuladoPorHora":{"0":2,"5":4},"porcentajeConsumo":133},{"producto":"Otras marcas","categoria":"INFINITE","fecha":"2026-06-02","totalClientes":7,"topeDiario":5,"horaTope":0,"acumuladoPorHora":{"0":7},"porcentajeConsumo":140},{"producto":"Otras marcas","categoria":"PLATINUM","fecha":"2026-06-02","totalClientes":19,"topeDiario":14,"horaTope":5,"acumuladoPorHora":{"0":7,"4":8,"5":16,"6":17,"7":19},"porcentajeConsumo":136},{"producto":"Cencosud","categoria":"PLATINUM","fecha":"2026-06-02","totalClientes":5,"topeDiario":4,"horaTope":6,"acumuladoPorHora":{"0":2,"6":4,"7":5},"porcentajeConsumo":125},{"producto":"Cencosud","categoria":"INFINITE","fecha":"2026-06-02","totalClientes":1,"topeDiario":1,"horaTope":0,"acumuladoPorHora":{"0":1},"porcentajeConsumo":100},{"producto":"Pricesmart","categoria":"ORO","fecha":"2026-06-02","totalClientes":7,"topeDiario":6,"horaTope":11,"acumuladoPorHora":{"2":1,"5":2,"6":3,"8":4,"10":5,"11":6,"15":7},"porcentajeConsumo":117},{"producto":"Otras marcas","categoria":"ORO","fecha":"2026-06-02","totalClientes":7,"topeDiario":5,"horaTope":10,"acumuladoPorHora":{"7":1,"8":3,"9":4,"10":5,"11":7},"porcentajeConsumo":140},{"producto":"Otras marcas","categoria":"SIGNATURE","fecha":"2026-06-02","totalClientes":3,"topeDiario":2,"horaTope":9,"acumuladoPorHora":{"7":1,"9":2,"10":3},"porcentajeConsumo":150},{"producto":"Otras marcas","categoria":"EMPRESARIAL","fecha":"2026-06-02","totalClientes":2,"topeDiario":5,"horaTope":null,"acumuladoPorHora":{"8":1,"14":2},"porcentajeConsumo":40},{"producto":"Pricesmart","categoria":"SIGNATURE","fecha":"2026-06-02","totalClientes":2,"topeDiario":1,"horaTope":8,"acumuladoPorHora":{"8":1,"9":2},"porcentajeConsumo":200},{"producto":"Cencosud","categoria":"ORO","fecha":"2026-06-02","totalClientes":8,"topeDiario":8,"horaTope":18,"acumuladoPorHora":{"9":2,"10":3,"11":4,"12":5,"13":6,"18":8},"porcentajeConsumo":100},{"producto":"Pricesmart","categoria":"PLATINUM","fecha":"2026-06-02","totalClientes":2,"topeDiario":1,"horaTope":16,"acumuladoPorHora":{"16":2},"porcentajeConsumo":200},{"producto":"Otras marcas","categoria":"INFINITE","fecha":"2026-06-03","totalClientes":25,"topeDiario":25,"horaTope":13,"acumuladoPorHora":{"0":7,"10":10,"11":16,"12":20,"13":25},"porcentajeConsumo":100},{"producto":"Otras marcas","categoria":"PLATINUM","fecha":"2026-06-03","totalClientes":64,"topeDiario":64,"horaTope":17,"acumuladoPorHora":{"0":7,"1":8,"2":9,"4":10,"5":14,"6":19,"11":27,"12":35,"13":41,"14":46,"15":53,"16":61,"17":64},"porcentajeConsumo":100},{"producto":"Cencosud","categoria":"INFINITE","fecha":"2026-06-03","totalClientes":5,"topeDiario":5,"horaTope":11,"acumuladoPorHora":{"0":1,"10":3,"11":5},"porcentajeConsumo":100},{"producto":"Cencosud","categoria":"PLATINUM","fecha":"2026-06-03","totalClientes":17,"topeDiario":17,"horaTope":18,"acumuladoPorHora":{"0":1,"6":2,"7":4,"8":5,"11":7,"12":10,"13":11,"14":13,"16":15,"17":16,"18":17},"porcentajeConsumo":100},{"producto":"Otras marcas","categoria":"BLACK","fecha":"2026-06-03","totalClientes":15,"topeDiario":15,"horaTope":13,"acumuladoPorHora":{"0":3,"3":4,"10":11,"11":12,"12":13,"13":15},"porcentajeConsumo":100},{"producto":"Pricesmart","categoria":"SIGNATURE","fecha":"2026-06-03","totalClientes":7,"topeDiario":7,"horaTope":20,"acumuladoPorHora":{"0":1,"8":2,"11":3,"12":5,"18":6,"20":7},"porcentajeConsumo":100},{"producto":"Pricesmart","categoria":"PLATINUM","fecha":"2026-06-03","totalClientes":2,"topeDiario":8,"horaTope":null,"acumuladoPorHora":{"8":1,"13":2},"porcentajeConsumo":25},{"producto":"Cencosud","categoria":"ORO","fecha":"2026-06-03","totalClientes":10,"topeDiario":37,"horaTope":null,"acumuladoPorHora":{"8":3,"9":4,"13":5,"18":7,"19":8,"20":9,"21":10},"porcentajeConsumo":27},{"producto":"Otras marcas","categoria":"ORO","fecha":"2026-06-03","totalClientes":9,"topeDiario":25,"horaTope":null,"acumuladoPorHora":{"8":1,"9":3,"10":6,"11":7,"13":8,"15":9},"porcentajeConsumo":36},{"producto":"Otras marcas","categoria":"SIGNATURE","fecha":"2026-06-03","totalClientes":6,"topeDiario":11,"horaTope":null,"acumuladoPorHora":{"9":1,"10":2,"14":3,"15":5,"19":6},"porcentajeConsumo":55},{"producto":"Pricesmart","categoria":"ORO","fecha":"2026-06-03","totalClientes":2,"topeDiario":26,"horaTope":null,"acumuladoPorHora":{"12":2},"porcentajeConsumo":8},{"producto":"Otras marcas","categoria":"INFINITE","fecha":"2026-06-04","totalClientes":25,"topeDiario":25,"horaTope":8,"acumuladoPorHora":{"0":9,"1":10,"2":13,"3":14,"4":16,"5":18,"6":19,"7":24,"8":25},"porcentajeConsumo":100},{"producto":"Otras marcas","categoria":"PLATINUM","fecha":"2026-06-04","totalClientes":64,"topeDiario":64,"horaTope":19,"acumuladoPorHora":{"0":5,"6":6,"7":9,"8":18,"9":25,"10":32,"11":35,"12":39,"13":41,"14":45,"15":50,"16":56,"17":62,"18":63,"19":64},"porcentajeConsumo":100},{"producto":"Otras marcas","categoria":"BLACK","fecha":"2026-06-04","totalClientes":15,"topeDiario":15,"horaTope":9,"acumuladoPorHora":{"0":1,"2":3,"3":4,"4":5,"5":6,"7":7,"8":14,"9":15},"porcentajeConsumo":100},{"producto":"Cencosud","categoria":"INFINITE","fecha":"2026-06-04","totalClientes":5,"topeDiario":5,"horaTope":3,"acumuladoPorHora":{"0":2,"2":3,"3":5},"porcentajeConsumo":100},{"producto":"Pricesmart","categoria":"SIGNATURE","fecha":"2026-06-04","totalClientes":5,"topeDiario":7,"horaTope":null,"acumuladoPorHora":{"5":1,"13":2,"16":3,"17":4,"18":5},"porcentajeConsumo":71},{"producto":"Cencosud","categoria":"PLATINUM","fecha":"2026-06-04","totalClientes":8,"topeDiario":17,"horaTope":null,"acumuladoPorHora":{"8":1,"9":2,"10":3,"11":4,"13":5,"15":6,"20":8},"porcentajeConsumo":47},{"producto":"Pricesmart","categoria":"ORO","fecha":"2026-06-04","totalClientes":5,"topeDiario":26,"horaTope":null,"acumuladoPorHora":{"8":1,"9":2,"11":4,"12":5},"porcentajeConsumo":19},{"producto":"Otras marcas","categoria":"ORO","fecha":"2026-06-04","totalClientes":10,"topeDiario":25,"horaTope":null,"acumuladoPorHora":{"9":1,"10":3,"11":4,"13":7,"16":9,"17":10},"porcentajeConsumo":40},{"producto":"Otras marcas","categoria":"SIGNATURE","fecha":"2026-06-04","totalClientes":5,"topeDiario":11,"horaTope":null,"acumuladoPorHora":{"10":2,"11":3,"15":4,"18":5},"porcentajeConsumo":45},{"producto":"Pricesmart","categoria":"PLATINUM","fecha":"2026-06-04","totalClientes":1,"topeDiario":8,"horaTope":null,"acumuladoPorHora":{"10":1},"porcentajeConsumo":13},{"producto":"Cencosud","categoria":"ORO","fecha":"2026-06-04","totalClientes":3,"topeDiario":37,"horaTope":null,"acumuladoPorHora":{"11":1,"12":2,"15":3},"porcentajeConsumo":8},{"producto":"Otras marcas","categoria":"CLASICA","fecha":"2026-06-04","totalClientes":1,"topeDiario":27,"horaTope":null,"acumuladoPorHora":{"14":1},"porcentajeConsumo":4},{"producto":"Cencosud","categoria":"CLASICA","fecha":"2026-06-04","totalClientes":1,"topeDiario":26,"horaTope":null,"acumuladoPorHora":{"15":1},"porcentajeConsumo":4},{"producto":"Cencosud","categoria":"INFINITE","fecha":"2026-06-05","totalClientes":5,"topeDiario":5,"horaTope":0,"acumuladoPorHora":{"0":5},"porcentajeConsumo":100},{"producto":"Otras marcas","categoria":"INFINITE","fecha":"2026-06-05","totalClientes":25,"topeDiario":25,"horaTope":9,"acumuladoPorHora":{"0":4,"1":5,"4":6,"5":7,"6":11,"7":12,"8":21,"9":25},"porcentajeConsumo":100},{"producto":"Otras marcas","categoria":"PLATINUM","fecha":"2026-06-05","totalClientes":48,"topeDiario":64,"horaTope":null,"acumuladoPorHora":{"1":1,"7":2,"8":6,"9":12,"10":16,"11":21,"12":24,"13":27,"14":29,"15":34,"16":38,"17":44,"18":45,"19":46,"20":47,"21":48},"porcentajeConsumo":75},{"producto":"Otras marcas","categoria":"CLASICA","fecha":"2026-06-05","totalClientes":4,"topeDiario":27,"horaTope":null,"acumuladoPorHora":{"3":1,"15":3,"17":4},"porcentajeConsumo":15},{"producto":"Otras marcas","categoria":"BLACK","fecha":"2026-06-05","totalClientes":15,"topeDiario":15,"horaTope":13,"acumuladoPorHora":{"5":1,"6":3,"7":5,"9":6,"10":8,"11":12,"12":13,"13":15},"porcentajeConsumo":100},{"producto":"Cencosud","categoria":"PLATINUM","fecha":"2026-06-05","totalClientes":9,"topeDiario":17,"horaTope":null,"acumuladoPorHora":{"7":1,"8":2,"10":3,"11":4,"14":6,"16":8,"18":9},"porcentajeConsumo":53},{"producto":"Otras marcas","categoria":"ORO","fecha":"2026-06-05","totalClientes":11,"topeDiario":25,"horaTope":null,"acumuladoPorHora":{"8":2,"9":4,"12":5,"13":7,"15":8,"17":10,"21":11},"porcentajeConsumo":44},{"producto":"Cencosud","categoria":"ORO","fecha":"2026-06-05","totalClientes":8,"topeDiario":37,"horaTope":null,"acumuladoPorHora":{"8":1,"9":2,"10":5,"14":6,"16":7,"21":8},"porcentajeConsumo":22},{"producto":"Pricesmart","categoria":"SIGNATURE","fecha":"2026-06-05","totalClientes":1,"topeDiario":7,"horaTope":null,"acumuladoPorHora":{"8":1},"porcentajeConsumo":14},{"producto":"Cencosud","categoria":"CLASICA","fecha":"2026-06-05","totalClientes":1,"topeDiario":26,"horaTope":null,"acumuladoPorHora":{"9":1},"porcentajeConsumo":4},{"producto":"Pricesmart","categoria":"PLATINUM","fecha":"2026-06-05","totalClientes":3,"topeDiario":8,"horaTope":null,"acumuladoPorHora":{"10":1,"12":2,"13":3},"porcentajeConsumo":38},{"producto":"Otras marcas","categoria":"SIGNATURE","fecha":"2026-06-05","totalClientes":4,"topeDiario":11,"horaTope":null,"acumuladoPorHora":{"10":1,"11":2,"12":3,"13":4},"porcentajeConsumo":36},{"producto":"Cencosud","categoria":"INFINITE","fecha":"2026-06-06","totalClientes":10,"topeDiario":15,"horaTope":null,"acumuladoPorHora":{"0":1,"1":2,"6":4,"7":5,"8":6,"9":7,"12":8,"15":9,"18":10},"porcentajeConsumo":67},{"producto":"Otras marcas","categoria":"INFINITE","fecha":"2026-06-06","totalClientes":16,"topeDiario":30,"horaTope":null,"acumuladoPorHora":{"2":1,"3":2,"7":5,"8":6,"9":7,"10":12,"11":13,"12":14,"15":16},"porcentajeConsumo":53},{"producto":"Otras marcas","categoria":"PLATINUM","fecha":"2026-06-06","totalClientes":19,"topeDiario":47,"horaTope":null,"acumuladoPorHora":{"5":1,"6":2,"7":3,"9":7,"10":9,"11":11,"12":12,"13":13,"14":14,"17":15,"18":17,"19":19},"porcentajeConsumo":40},{"producto":"Otras marcas","categoria":"BLACK","fecha":"2026-06-06","totalClientes":14,"topeDiario":23,"horaTope":null,"acumuladoPorHora":{"6":1,"7":3,"8":4,"9":5,"10":8,"11":9,"12":11,"13":12,"15":13,"20":14},"porcentajeConsumo":61},{"producto":"Pricesmart","categoria":"SIGNATURE","fecha":"2026-06-06","totalClientes":2,"topeDiario":10,"horaTope":null,"acumuladoPorHora":{"7":1,"8":2},"porcentajeConsumo":20},{"producto":"Cencosud","categoria":"PLATINUM","fecha":"2026-06-06","totalClientes":2,"topeDiario":9,"horaTope":null,"acumuladoPorHora":{"9":1,"10":2},"porcentajeConsumo":22},{"producto":"Cencosud","categoria":"ORO","fecha":"2026-06-06","totalClientes":1,"topeDiario":7,"horaTope":null,"acumuladoPorHora":{"9":1},"porcentajeConsumo":14},{"producto":"Pricesmart","categoria":"ORO","fecha":"2026-06-06","totalClientes":2,"topeDiario":3,"horaTope":null,"acumuladoPorHora":{"9":1,"13":2},"porcentajeConsumo":67},{"producto":"Otras marcas","categoria":"SIGNATURE","fecha":"2026-06-06","totalClientes":2,"topeDiario":7,"horaTope":null,"acumuladoPorHora":{"9":1,"23":2},"porcentajeConsumo":29},{"producto":"Pricesmart","categoria":"PLATINUM","fecha":"2026-06-06","totalClientes":1,"topeDiario":3,"horaTope":null,"acumuladoPorHora":{"14":1},"porcentajeConsumo":33},{"producto":"Otras marcas","categoria":"BLACK","fecha":"2026-06-07","totalClientes":4,"topeDiario":23,"horaTope":null,"acumuladoPorHora":{"7":1,"14":2,"17":3,"18":4},"porcentajeConsumo":17},{"producto":"Otras marcas","categoria":"PLATINUM","fecha":"2026-06-07","totalClientes":11,"topeDiario":47,"horaTope":null,"acumuladoPorHora":{"8":1,"10":2,"12":3,"13":4,"14":6,"15":9,"16":10,"21":11},"porcentajeConsumo":23},{"producto":"Cencosud","categoria":"ORO","fecha":"2026-06-07","totalClientes":3,"topeDiario":7,"horaTope":null,"acumuladoPorHora":{"8":1,"13":2,"14":3},"porcentajeConsumo":43},{"producto":"Otras marcas","categoria":"ORO","fecha":"2026-06-07","totalClientes":4,"topeDiario":11,"horaTope":null,"acumuladoPorHora":{"9":1,"10":2,"18":3,"21":4},"porcentajeConsumo":36},{"producto":"Otras marcas","categoria":"INFINITE","fecha":"2026-06-07","totalClientes":6,"topeDiario":30,"horaTope":null,"acumuladoPorHora":{"10":2,"11":3,"12":4,"18":5,"20":6},"porcentajeConsumo":20},{"producto":"Otras marcas","categoria":"EMPRESARIAL","fecha":"2026-06-07","totalClientes":1,"topeDiario":6,"horaTope":null,"acumuladoPorHora":{"10":1},"porcentajeConsumo":17},{"producto":"Otras marcas","categoria":"SIGNATURE","fecha":"2026-06-07","totalClientes":1,"topeDiario":7,"horaTope":null,"acumuladoPorHora":{"11":1},"porcentajeConsumo":14},{"producto":"Pricesmart","categoria":"PLATINUM","fecha":"2026-06-07","totalClientes":1,"topeDiario":3,"horaTope":null,"acumuladoPorHora":{"13":1},"porcentajeConsumo":33},{"producto":"Cencosud","categoria":"INFINITE","fecha":"2026-06-07","totalClientes":1,"topeDiario":15,"horaTope":null,"acumuladoPorHora":{"20":1},"porcentajeConsumo":7},{"producto":"Cencosud","categoria":"PLATINUM","fecha":"2026-06-07","totalClientes":1,"topeDiario":9,"horaTope":null,"acumuladoPorHora":{"22":1},"porcentajeConsumo":11},{"producto":"Otras marcas","categoria":"INFINITE","fecha":"2026-06-08","totalClientes":11,"topeDiario":30,"horaTope":null,"acumuladoPorHora":{"0":1,"9":3,"10":6,"12":7,"13":8,"16":10,"20":11},"porcentajeConsumo":37},{"producto":"Otras marcas","categoria":"BLACK","fecha":"2026-06-08","totalClientes":7,"topeDiario":23,"horaTope":null,"acumuladoPorHora":{"4":1,"10":3,"13":4,"15":5,"16":6,"18":7},"porcentajeConsumo":30},{"producto":"Cencosud","categoria":"PLATINUM","fecha":"2026-06-08","totalClientes":7,"topeDiario":9,"horaTope":null,"acumuladoPorHora":{"9":1,"10":2,"14":4,"19":5,"22":6,"23":7},"porcentajeConsumo":78},{"producto":"Otras marcas","categoria":"PLATINUM","fecha":"2026-06-08","totalClientes":17,"topeDiario":47,"horaTope":null,"acumuladoPorHora":{"9":4,"10":7,"11":10,"13":11,"15":12,"16":14,"17":16,"21":17},"porcentajeConsumo":36},{"producto":"Otras marcas","categoria":"CLASICA","fecha":"2026-06-08","totalClientes":2,"topeDiario":3,"horaTope":null,"acumuladoPorHora":{"10":1,"19":2},"porcentajeConsumo":67},{"producto":"Otras marcas","categoria":"SIGNATURE","fecha":"2026-06-08","totalClientes":1,"topeDiario":7,"horaTope":null,"acumuladoPorHora":{"10":1},"porcentajeConsumo":14},{"producto":"Cencosud","categoria":"ORO","fecha":"2026-06-08","totalClientes":1,"topeDiario":7,"horaTope":null,"acumuladoPorHora":{"14":1},"porcentajeConsumo":14},{"producto":"Cencosud","categoria":"INFINITE","fecha":"2026-06-08","totalClientes":1,"topeDiario":15,"horaTope":null,"acumuladoPorHora":{"15":1},"porcentajeConsumo":7},{"producto":"Pricesmart","categoria":"PLATINUM","fecha":"2026-06-08","totalClientes":2,"topeDiario":3,"horaTope":null,"acumuladoPorHora":{"15":1,"17":2},"porcentajeConsumo":67},{"producto":"Otras marcas","categoria":"EMPRESARIAL","fecha":"2026-06-08","totalClientes":1,"topeDiario":6,"horaTope":null,"acumuladoPorHora":{"19":1},"porcentajeConsumo":17},{"producto":"Otras marcas","categoria":"ORO","fecha":"2026-06-08","totalClientes":1,"topeDiario":11,"horaTope":null,"acumuladoPorHora":{"21":1},"porcentajeConsumo":9},{"producto":"Otras marcas","categoria":"PLATINUM","fecha":"2026-06-09","totalClientes":47,"topeDiario":47,"horaTope":17,"acumuladoPorHora":{"2":1,"5":2,"7":3,"8":13,"9":22,"10":26,"11":28,"12":31,"13":32,"14":34,"15":36,"16":46,"17":47},"porcentajeConsumo":100},{"producto":"Otras marcas","categoria":"INFINITE","fecha":"2026-06-09","totalClientes":30,"topeDiario":30,"horaTope":11,"acumuladoPorHora":{"2":1,"7":4,"8":12,"9":17,"10":28,"11":30},"porcentajeConsumo":100},{"producto":"Otras marcas","categoria":"ORO","fecha":"2026-06-09","totalClientes":11,"topeDiario":11,"horaTope":22,"acumuladoPorHora":{"7":1,"11":3,"12":4,"16":8,"18":9,"22":11},"porcentajeConsumo":100},{"producto":"Otras marcas","categoria":"BLACK","fecha":"2026-06-09","totalClientes":23,"topeDiario":23,"horaTope":20,"acumuladoPorHora":{"8":2,"9":6,"10":7,"11":9,"12":14,"13":16,"14":17,"15":19,"16":20,"17":21,"19":22,"20":23},"porcentajeConsumo":100},{"producto":"Cencosud","categoria":"INFINITE","fecha":"2026-06-09","totalClientes":15,"topeDiario":15,"horaTope":21,"acumuladoPorHora":{"8":4,"9":6,"10":8,"11":9,"13":10,"14":11,"15":12,"16":13,"21":15},"porcentajeConsumo":100},{"producto":"Cencosud","categoria":"PLATINUM","fecha":"2026-06-09","totalClientes":9,"topeDiario":9,"horaTope":14,"acumuladoPorHora":{"8":1,"9":2,"11":4,"12":6,"13":8,"14":9},"porcentajeConsumo":100},{"producto":"Otras marcas","categoria":"SIGNATURE","fecha":"2026-06-09","totalClientes":6,"topeDiario":7,"horaTope":null,"acumuladoPorHora":{"8":1,"9":2,"10":3,"13":5,"14":6},"porcentajeConsumo":86},{"producto":"Cencosud","categoria":"ORO","fecha":"2026-06-09","totalClientes":7,"topeDiario":7,"horaTope":23,"acumuladoPorHora":{"10":2,"15":3,"16":6,"23":7},"porcentajeConsumo":100},{"producto":"Otras marcas","categoria":"CLASICA","fecha":"2026-06-09","totalClientes":2,"topeDiario":3,"horaTope":null,"acumuladoPorHora":{"13":1,"23":2},"porcentajeConsumo":67},{"producto":"Pricesmart","categoria":"SIGNATURE","fecha":"2026-06-09","totalClientes":1,"topeDiario":10,"horaTope":null,"acumuladoPorHora":{"16":1},"porcentajeConsumo":10},{"producto":"Pricesmart","categoria":"ORO","fecha":"2026-06-09","totalClientes":1,"topeDiario":3,"horaTope":null,"acumuladoPorHora":{"20":1},"porcentajeConsumo":33},{"producto":"Pricesmart","categoria":"PLATINUM","fecha":"2026-06-09","totalClientes":2,"topeDiario":3,"horaTope":null,"acumuladoPorHora":{"22":1,"23":2},"porcentajeConsumo":67},{"producto":"Otras marcas","categoria":"INFINITE","fecha":"2026-06-10","totalClientes":30,"topeDiario":30,"horaTope":11,"acumuladoPorHora":{"0":4,"5":6,"6":7,"7":10,"8":16,"9":19,"10":29,"11":30},"porcentajeConsumo":100},{"producto":"Cencosud","categoria":"PLATINUM","fecha":"2026-06-10","totalClientes":9,"topeDiario":9,"horaTope":11,"acumuladoPorHora":{"0":2,"4":3,"8":4,"9":6,"10":7,"11":9},"porcentajeConsumo":100},{"producto":"Otras marcas","categoria":"PLATINUM","fecha":"2026-06-10","totalClientes":47,"topeDiario":47,"horaTope":14,"acumuladoPorHora":{"1":1,"3":2,"5":3,"7":8,"8":14,"9":17,"10":25,"11":33,"12":39,"13":45,"14":47},"porcentajeConsumo":100},{"producto":"Otras marcas","categoria":"BLACK","fecha":"2026-06-10","totalClientes":22,"topeDiario":23,"horaTope":null,"acumuladoPorHora":{"6":1,"7":3,"8":7,"9":9,"10":13,"11":17,"12":19,"13":21,"14":22},"porcentajeConsumo":96},{"producto":"Cencosud","categoria":"INFINITE","fecha":"2026-06-10","totalClientes":12,"topeDiario":15,"horaTope":null,"acumuladoPorHora":{"7":1,"8":2,"9":3,"10":5,"11":9,"13":11,"14":12},"porcentajeConsumo":80},{"producto":"Pricesmart","categoria":"SIGNATURE","fecha":"2026-06-10","totalClientes":4,"topeDiario":10,"horaTope":null,"acumuladoPorHora":{"7":2,"8":3,"13":4},"porcentajeConsumo":40},{"producto":"Otras marcas","categoria":"SIGNATURE","fecha":"2026-06-10","totalClientes":2,"topeDiario":7,"horaTope":null,"acumuladoPorHora":{"9":2},"porcentajeConsumo":29},{"producto":"Otras marcas","categoria":"ORO","fecha":"2026-06-10","totalClientes":4,"topeDiario":11,"horaTope":null,"acumuladoPorHora":{"9":1,"10":2,"11":3,"13":4},"porcentajeConsumo":36},{"producto":"Cencosud","categoria":"ORO","fecha":"2026-06-10","totalClientes":3,"topeDiario":7,"horaTope":null,"acumuladoPorHora":{"9":1,"11":3},"porcentajeConsumo":43},{"producto":"Pricesmart","categoria":"PLATINUM","fecha":"2026-06-10","totalClientes":1,"topeDiario":3,"horaTope":null,"acumuladoPorHora":{"9":1},"porcentajeConsumo":33},{"producto":"Pricesmart","categoria":"ORO","fecha":"2026-06-10","totalClientes":3,"topeDiario":3,"horaTope":15,"acumuladoPorHora":{"11":1,"13":2,"15":3},"porcentajeConsumo":100}],"transaccionesTotal":1006};
+    var TOPES_CONFIG_DEFAULT = {"periodos":[{"desde":"2026-06-01","hasta":"2026-06-02","topeMensual":2300,"diasMes":30,"distribucion":{"Otras marcas":{"pctProducto":0.582,"categorias":{"CLASICA":0.14,"ORO":0.13,"PLATINUM":0.33,"SIGNATURE":0.06,"INFINITE":0.13,"BLACK":0.08,"EMPRESARIAL":0.13}},"Metal":{"pctProducto":0.01,"categorias":{"METAL":1}},"Terpel":{"pctProducto":0.02,"categorias":{"CLASICA":0.5,"ORO":0.5}},"Cencosud":{"pctProducto":0.261,"categorias":{"CLASICA":0.3,"ORO":0.43,"PLATINUM":0.2,"INFINITE":0.06}},"Pricesmart":{"pctProducto":0.127,"categorias":{"ORO":0.62,"PLATINUM":0.2,"SIGNATURE":0.17}}}},{"desde":"2026-06-03","hasta":"2026-06-05","topeMensual":10000,"diasMes":30,"distribucion":"misma"},{"desde":"2026-06-06","hasta":"2026-12-31","topeMensual":6000,"diasMes":30,"distribucion":{"Otras marcas":{"pctProducto":0.66,"categorias":{"CLASICA":0.03,"ORO":0.09,"PLATINUM":0.36,"SIGNATURE":0.06,"INFINITE":0.23,"BLACK":0.18,"EMPRESARIAL":0.05}},"Metal":{"pctProducto":0.02,"categorias":{"METAL":1}},"Terpel":{"pctProducto":0.04,"categorias":{"CLASICA":0.5,"ORO":0.5}},"Cencosud":{"pctProducto":0.19,"categorias":{"CLASICA":0.11,"ORO":0.21,"PLATINUM":0.26,"INFINITE":0.42}},"Pricesmart":{"pctProducto":0.09,"categorias":{"ORO":0.22,"PLATINUM":0.22,"SIGNATURE":0.56}}}}]};
 
-    // --- Render principal ---
-    function renderAll() {
-      const filteredData = applyFilters(getActiveData());
-      renderKPIs(filteredData);
-      renderTable(filteredData);
-      renderResumenTopes(filteredData);
-      renderCharts(filteredData);
-      renderSimulationTable();
+    // --- State ---
+    var STORAGE_KEY = 'topes-config-davibank';
+    var topesConfig = loadTopesConfig();
+    var activePeriodoIdx = 0;
+
+    function loadTopesConfig() {
+      try {
+        var saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) return JSON.parse(saved);
+      } catch(e) {}
+      return JSON.parse(JSON.stringify(TOPES_CONFIG_DEFAULT));
     }
 
-    /** Retorna los resultados con topes recalculados si hay simulación activa */
-    function getActiveData() {
-      if (!simulatedTopesActive) return DASHBOARD_DATA.resultados;
+    function saveTopesConfig() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(topesConfig));
+      showToast('✅ Configuración guardada en localStorage');
+      document.getElementById('saveIndicator').classList.add('visible');
+      setTimeout(function() { document.getElementById('saveIndicator').classList.remove('visible'); }, 3000);
+      recalculateAndRender();
+    }
 
-      // Clonar resultados y recalcular con los topes simulados
-      return DASHBOARD_DATA.resultados.map(r => {
-        const key = r.producto + '|' + r.categoria;
-        const nuevoTope = simulatedTopesMap[key];
-        if (nuevoTope === undefined) return r;
+    function resetDefaults() {
+      if (!confirm('¿Resetear a la configuración por defecto? Se perderán los cambios locales.')) return;
+      localStorage.removeItem(STORAGE_KEY);
+      topesConfig = JSON.parse(JSON.stringify(TOPES_CONFIG_DEFAULT));
+      activePeriodoIdx = 0;
+      renderTopesPanel();
+      recalculateAndRender();
+      showToast('↺ Configuración reseteada a defaults');
+    }
 
-        // Recalcular hora de agotamiento y % consumo con nuevo tope
-        let horaTope = null;
-        const horasOrdenadas = Object.keys(r.acumuladoPorHora).map(Number).sort((a, b) => a - b);
-        for (const h of horasOrdenadas) {
-          const acum = r.acumuladoPorHora[h];
-          if (acum >= Math.floor(nuevoTope) && horaTope === null) {
-            horaTope = h;
+    // --- Topes panel rendering ---
+    function toggleTopesPanel() {
+      var body = document.getElementById('topesBody');
+      var icon = document.getElementById('toggleIcon');
+      body.classList.toggle('open');
+      icon.classList.toggle('open');
+    }
+
+    function renderTopesPanel() {
+      renderTabs();
+      renderPeriodoForm();
+    }
+
+    function renderTabs() {
+      var html = '';
+      topesConfig.periodos.forEach(function(p, i) {
+        var label = p.desde + ' → ' + p.hasta;
+        var badge = p.distribucion === 'misma' ? '<span class="tab-badge">hereda</span>' : '';
+        html += '<div class="periodo-tab ' + (i === activePeriodoIdx ? 'active' : '') + '" onclick="selectPeriodo(' + i + ')">' + label + badge + '</div>';
+      });
+      document.getElementById('periodosTabs').innerHTML = html;
+    }
+
+    function renderPeriodoForm() {
+      var p = topesConfig.periodos[activePeriodoIdx];
+      var isMisma = p.distribucion === 'misma';
+      var topeGlobal = Math.floor(p.topeMensual / p.diasMes);
+
+      var html = '<div class="periodo-form">';
+      html += '<div class="periodo-meta">';
+      html += formGroup('Desde', 'date', p.desde, 'onchange="updateMeta(&#39;desde&#39;, this.value)"');
+      html += formGroup('Hasta', 'date', p.hasta, 'onchange="updateMeta(&#39;hasta&#39;, this.value)"');
+      html += formGroup('Tope mensual', 'number', p.topeMensual, 'onchange="updateMeta(&#39;topeMensual&#39;, parseInt(this.value))" min="0" step="100"');
+      html += formGroup('Días del mes', 'number', p.diasMes, 'onchange="updateMeta(&#39;diasMes&#39;, parseInt(this.value))" min="1" max="31"');
+      html += '</div>';
+      html += '<div class="tope-global-preview">Tope diario global: ' + topeGlobal + '/día <span class="formula">= FLOOR(' + p.topeMensual + ' / ' + p.diasMes + ')</span></div>';
+      html += '<div class="misma-dist"><input type="checkbox" id="mismaCheck" ' + (isMisma ? 'checked' : '') + ' onchange="toggleMisma(this.checked)"><label for="mismaCheck">Usar misma distribución del período anterior</label></div>';
+
+      if (!isMisma) {
+        html += renderDistTable(p);
+      }
+
+      if (topesConfig.periodos.length > 1) {
+        html += '<div style="margin-top:12px;text-align:right;"><button class="btn btn-danger btn-sm" onclick="deletePeriodo()">🗑️ Eliminar período</button></div>';
+      }
+      html += '</div>';
+      document.getElementById('periodoForm').innerHTML = html;
+    }
+
+    function renderDistTable(p) {
+      var dist = p.distribucion;
+      var html = '<table class="dist-table"><thead><tr><th>Producto</th><th>% Producto</th><th>Categoría</th><th>% Categoría</th><th>Tope/día</th></tr></thead><tbody>';
+      var totalPctProducto = 0;
+      var productos = Object.keys(dist);
+
+      productos.forEach(function(prod) {
+        var info = dist[prod];
+        totalPctProducto += info.pctProducto;
+        var cats = Object.keys(info.categorias);
+        var totalPctCat = 0;
+
+        cats.forEach(function(cat, catIdx) {
+          var pctCat = info.categorias[cat];
+          totalPctCat += pctCat;
+          var cantMesProd = Math.floor(p.topeMensual * info.pctProducto);
+          var topeDia = Math.floor(Math.floor(cantMesProd * pctCat) / p.diasMes);
+
+          html += '<tr' + (catIdx === 0 ? ' class="producto-row"' : '') + '>';
+          if (catIdx === 0) {
+            html += '<td rowspan="' + cats.length + '"><strong>' + prod + '</strong></td>';
+            html += '<td rowspan="' + cats.length + '"><input type="number" value="' + (info.pctProducto * 100).toFixed(1) + '" step="0.1" min="0" max="100" onchange="updatePctProducto(&quot;' + prod + '&quot;, this.value)"> %</td>';
+          }
+          html += '<td>' + cat + '</td>';
+          html += '<td><input type="number" value="' + (pctCat * 100).toFixed(0) + '" step="1" min="0" max="100" onchange="updatePctCategoria(&quot;' + prod + '&quot;, &quot;' + cat + '&quot;, this.value)"> %</td>';
+          html += '<td class="tope-diario">' + topeDia + '</td>';
+          html += '</tr>';
+        });
+
+        var pctClass = Math.abs(totalPctCat - 1) < 0.02 ? 'pct-ok' : (totalPctCat > 1 ? 'pct-error' : 'pct-warning');
+        html += '<tr class="subtotal-row"><td></td><td></td><td style="text-align:right;font-size:0.75rem;">Σ Categorías:</td><td class="' + pctClass + '">' + (totalPctCat * 100).toFixed(0) + '%</td><td></td></tr>';
+      });
+
+      var prodClass = Math.abs(totalPctProducto - 1) < 0.02 ? 'pct-ok' : (totalPctProducto > 1 ? 'pct-error' : 'pct-warning');
+      html += '<tr style="background:#e8f5e9;font-weight:700;"><td>TOTAL</td><td class="' + prodClass + '">' + (totalPctProducto * 100).toFixed(1) + '%</td><td></td><td></td><td class="tope-diario">' + Math.floor(p.topeMensual / p.diasMes) + '</td></tr>';
+      html += '</tbody></table>';
+      return html;
+    }
+
+    // --- Topes panel actions ---
+    function selectPeriodo(idx) { activePeriodoIdx = idx; renderTopesPanel(); }
+
+    function updateMeta(field, value) {
+      topesConfig.periodos[activePeriodoIdx][field] = value;
+      renderPeriodoForm();
+      recalculateAndRender();
+    }
+
+    function updatePctProducto(prod, value) {
+      topesConfig.periodos[activePeriodoIdx].distribucion[prod].pctProducto = parseFloat(value) / 100;
+      renderPeriodoForm();
+      recalculateAndRender();
+    }
+
+    function updatePctCategoria(prod, cat, value) {
+      topesConfig.periodos[activePeriodoIdx].distribucion[prod].categorias[cat] = parseFloat(value) / 100;
+      renderPeriodoForm();
+      recalculateAndRender();
+    }
+
+    function toggleMisma(checked) {
+      if (checked) {
+        topesConfig.periodos[activePeriodoIdx].distribucion = 'misma';
+      } else {
+        var prevDist = getResolvedDist(activePeriodoIdx - 1);
+        topesConfig.periodos[activePeriodoIdx].distribucion = JSON.parse(JSON.stringify(prevDist));
+      }
+      renderPeriodoForm();
+      recalculateAndRender();
+    }
+
+    function getResolvedDist(idx) {
+      for (var i = idx; i >= 0; i--) {
+        if (topesConfig.periodos[i].distribucion !== 'misma') return topesConfig.periodos[i].distribucion;
+      }
+      return TOPES_CONFIG_DEFAULT.periodos[0].distribucion;
+    }
+
+    function addPeriodo() {
+      var last = topesConfig.periodos[topesConfig.periodos.length - 1];
+      var newDesde = new Date(last.hasta + 'T12:00:00');
+      newDesde.setDate(newDesde.getDate() + 1);
+      var newHasta = new Date(newDesde);
+      newHasta.setDate(newHasta.getDate() + 29);
+      topesConfig.periodos.push({
+        desde: newDesde.toISOString().slice(0, 10),
+        hasta: newHasta.toISOString().slice(0, 10),
+        topeMensual: last.topeMensual,
+        diasMes: last.diasMes,
+        distribucion: 'misma'
+      });
+      activePeriodoIdx = topesConfig.periodos.length - 1;
+      renderTopesPanel();
+      showToast('➕ Período agregado');
+    }
+
+    function duplicatePeriodo() {
+      var current = JSON.parse(JSON.stringify(topesConfig.periodos[activePeriodoIdx]));
+      var newDesde = new Date(current.hasta + 'T12:00:00');
+      newDesde.setDate(newDesde.getDate() + 1);
+      var newHasta = new Date(newDesde);
+      newHasta.setDate(newHasta.getDate() + 29);
+      current.desde = newDesde.toISOString().slice(0, 10);
+      current.hasta = newHasta.toISOString().slice(0, 10);
+      topesConfig.periodos.push(current);
+      activePeriodoIdx = topesConfig.periodos.length - 1;
+      renderTopesPanel();
+      showToast('📋 Período duplicado');
+    }
+
+    function deletePeriodo() {
+      if (topesConfig.periodos.length <= 1) return;
+      if (!confirm('¿Eliminar este período?')) return;
+      topesConfig.periodos.splice(activePeriodoIdx, 1);
+      activePeriodoIdx = Math.min(activePeriodoIdx, topesConfig.periodos.length - 1);
+      renderTopesPanel();
+      recalculateAndRender();
+      showToast('🗑️ Período eliminado');
+    }
+
+    // --- Recalculate dashboard from topes config ---
+    function getConfigForDateClient(fecha) {
+      var distribucionAnterior = null;
+      for (var i = 0; i < topesConfig.periodos.length; i++) {
+        var p = topesConfig.periodos[i];
+        if (p.distribucion !== 'misma') distribucionAnterior = p.distribucion;
+        if (fecha >= p.desde && fecha <= p.hasta) {
+          return { topeMensual: p.topeMensual, diasMes: p.diasMes, distribucion: p.distribucion === 'misma' ? distribucionAnterior : p.distribucion };
+        }
+      }
+      return null;
+    }
+
+    function calcularTopeDiarioClient(fecha, producto, categoria) {
+      var cfg = getConfigForDateClient(fecha);
+      if (!cfg || !cfg.distribucion) return 0;
+      var distProducto = cfg.distribucion[producto];
+      if (!distProducto) return 0;
+      var pctProducto = distProducto.pctProducto || 0;
+      var pctCategoria = distProducto.categorias[categoria] || 0;
+      return Math.floor(Math.floor(cfg.topeMensual * pctProducto) * pctCategoria / cfg.diasMes);
+    }
+
+    function recalculateResults() {
+      return DASHBOARD_DATA.resultados.map(function(r) {
+        var topeDiario = calcularTopeDiarioClient(r.fecha, r.producto, r.categoria) || null;
+        var horaTope = null;
+        if (topeDiario) {
+          var horas = Object.keys(r.acumuladoPorHora).map(Number).sort(function(a,b){return a-b;});
+          for (var i = 0; i < horas.length; i++) {
+            if (r.acumuladoPorHora[horas[i]] >= topeDiario) { horaTope = horas[i]; break; }
           }
         }
-
-        return {
-          ...r,
-          topeDiario: Math.round(nuevoTope * 100) / 100,
-          horaTope,
-          porcentajeConsumo: nuevoTope > 0 ? Math.round((r.totalClientes / nuevoTope) * 100) : null
-        };
+        var porcentajeConsumo = topeDiario ? Math.round((r.totalClientes / topeDiario) * 100) : null;
+        return { producto: r.producto, categoria: r.categoria, fecha: r.fecha, totalClientes: r.totalClientes, topeDiario: topeDiario, horaTope: horaTope, acumuladoPorHora: r.acumuladoPorHora, porcentajeConsumo: porcentajeConsumo };
       });
     }
 
-    function applyFilters(data) {
-      const fecha = document.getElementById('filterFecha').value;
-      const producto = document.getElementById('filterProducto').value;
-      const categoria = document.getElementById('filterCategoria').value;
-      const estado = document.getElementById('filterEstado').value;
+    function recalculateAndRender() {
+      renderDashboard();
+    }
 
-      return data.filter(r => {
-        if (fecha !== 'all' && r.fecha !== fecha) return false;
-        if (producto !== 'all' && r.producto !== producto) return false;
-        if (categoria !== 'all' && r.categoria !== categoria) return false;
-        if (estado === 'cumplido' && r.horaTope === null) return false;
-        if (estado === 'disponible' && r.horaTope !== null) return false;
+    // --- Dashboard rendering (KPIs, table, charts) ---
+    function renderDashboard() {
+      var resultados = recalculateResults();
+      var filterFecha = document.getElementById('filterFecha').value;
+      var filterProducto = document.getElementById('filterProducto').value;
+      var filterCategoria = document.getElementById('filterCategoria').value;
+      var filterEstado = document.getElementById('filterEstado').value;
+
+      var filtered = resultados.filter(function(r) {
+        if (filterFecha !== 'all' && r.fecha !== filterFecha) return false;
+        if (filterProducto !== 'all' && r.producto !== filterProducto) return false;
+        if (filterCategoria !== 'all' && r.categoria !== filterCategoria) return false;
+        if (filterEstado === 'cumplido' && r.horaTope === null) return false;
+        if (filterEstado === 'disponible' && r.horaTope !== null) return false;
         return true;
       });
+
+      // KPIs
+      var totalClientes = filtered.reduce(function(s,r){return s+r.totalClientes;},0);
+      var conTope = filtered.filter(function(r){return r.horaTope !== null;});
+      var sinTope = filtered.filter(function(r){return r.horaTope === null && r.topeDiario;});
+      var avgConsumo = filtered.filter(function(r){return r.porcentajeConsumo !== null;});
+      var avgPct = avgConsumo.length ? Math.round(avgConsumo.reduce(function(s,r){return s+r.porcentajeConsumo;},0)/avgConsumo.length) : 0;
+
+      var kpiHtml = '';
+      kpiHtml += '<div class="kpi-card"><div class="value">' + totalClientes.toLocaleString() + '</div><div class="label">Clientes totales</div></div>';
+      kpiHtml += '<div class="kpi-card"><div class="value">' + filtered.length + '</div><div class="label">Combinaciones</div></div>';
+      kpiHtml += '<div class="kpi-card"><div class="value" style="color:var(--danger);">' + conTope.length + '</div><div class="label">Topes alcanzados</div></div>';
+      kpiHtml += '<div class="kpi-card"><div class="value" style="color:var(--success);">' + sinTope.length + '</div><div class="label">Con disponibilidad</div></div>';
+      kpiHtml += '<div class="kpi-card"><div class="value">' + avgPct + '%</div><div class="label">Consumo promedio</div></div>';
+      document.getElementById('kpiGrid').innerHTML = kpiHtml;
+
+      // Table
+      var tbHtml = '';
+      filtered.sort(function(a,b){ return (b.porcentajeConsumo||0) - (a.porcentajeConsumo||0); });
+      filtered.forEach(function(r) {
+        var pct = r.porcentajeConsumo !== null ? r.porcentajeConsumo : '-';
+        var badgeClass = r.horaTope !== null ? 'badge-danger' : (r.porcentajeConsumo && r.porcentajeConsumo >= 80 ? 'badge-warning' : 'badge-success');
+        var estado = r.horaTope !== null ? 'Agotado' : (r.porcentajeConsumo && r.porcentajeConsumo >= 80 ? 'Casi agotado' : 'Disponible');
+        var horaStr = r.horaTope !== null ? r.horaTope + ':00' : '-';
+        tbHtml += '<tr><td>' + r.producto + '</td><td>' + r.categoria + '</td><td>' + r.fecha + '</td><td>' + r.totalClientes + '</td><td>' + (r.topeDiario || '-') + '</td><td>' + pct + '%</td><td>' + horaStr + '</td><td><span class="badge ' + badgeClass + '">' + estado + '</span></td></tr>';
+      });
+      document.getElementById('tableBody').innerHTML = tbHtml;
+
+      // Resumen de hora tope
+      renderResumenTopes(filtered);
+
+      // Charts
+      renderCharts(filtered);
     }
 
-    function renderKPIs(data) {
-      const totalClientes = data.reduce((s, r) => s + r.totalClientes, 0);
-      const topesCumplidos = data.filter(r => r.horaTope !== null).length;
-      const conDisponibilidad = data.filter(r => r.horaTope === null).length;
-      const promedioConsumo = data.length > 0
-        ? Math.round(data.reduce((s, r) => s + (r.porcentajeConsumo || 0), 0) / data.length)
-        : 0;
-      const horasAgotamiento = data.filter(r => r.horaTope !== null).map(r => r.horaTope);
-      const horaPromedio = horasAgotamiento.length > 0
-        ? Math.round(horasAgotamiento.reduce((a, b) => a + b, 0) / horasAgotamiento.length)
-        : null;
-      const horaMasTemp = horasAgotamiento.length > 0 ? Math.min(...horasAgotamiento) : null;
+    function renderResumenTopes(filtered) {
+      var fechas = DASHBOARD_DATA.fechas;
+      var grouped = {};
+      filtered.forEach(function(r) {
+        var key = r.producto + '|' + r.categoria;
+        if (!grouped[key]) grouped[key] = {};
+        grouped[key][r.fecha] = r.horaTope;
+      });
 
-      const simBadge = simulatedTopesActive ? '<span class="badge badge-warning" style="font-size:0.7rem;margin-left:8px;">Escenario simulado</span>' : '';
-
-      document.getElementById('kpiGrid').innerHTML = `
-        <div class="kpi-card"><div class="value">${totalClientes}</div><div class="label">Total Clientes</div></div>
-        <div class="kpi-card"><div class="value">${topesCumplidos}</div><div class="label">Topes Cumplidos (agotados) ${simBadge}</div></div>
-        <div class="kpi-card"><div class="value">${conDisponibilidad}</div><div class="label">Con Disponibilidad</div></div>
-        <div class="kpi-card"><div class="value">${promedioConsumo}%</div><div class="label">Consumo Promedio</div></div>
-        <div class="kpi-card"><div class="value">${horaPromedio !== null ? horaPromedio + ':00' : '—'}</div><div class="label">Hora Prom. Agotamiento</div></div>
-        <div class="kpi-card"><div class="value" style="color:var(--danger)">${horaMasTemp !== null ? horaMasTemp + ':00' : '—'}</div><div class="label">Agotamiento más temprano</div></div>
-      `;
-    }
-
-    function renderTable(data) {
-      const tbody = document.getElementById('tableBody');
-      tbody.innerHTML = data.map(r => {
-        const pct = r.porcentajeConsumo || 0;
-        let badgeClass = 'badge-success';
-        let estadoText = 'Disponible';
-        if (r.horaTope !== null) {
-          badgeClass = 'badge-danger';
-          estadoText = 'Agotado ' + r.horaTope + ':00';
-        } else if (pct > 70) {
-          badgeClass = 'badge-warning';
-          estadoText = 'Cerca (' + pct + '%)';
-        }
-        const barColor = pct >= 100 ? 'var(--danger)' : pct > 70 ? 'var(--warning)' : 'var(--success)';
-        return `<tr>
-          <td><strong>${r.producto}</strong></td>
-          <td>${r.categoria}</td>
-          <td>${r.fecha}</td>
-          <td style="text-align:center;font-weight:600">${r.totalClientes}</td>
-          <td style="text-align:center">${r.topeDiario !== null ? Math.round(r.topeDiario) : '—'}</td>
-          <td>
-            <div style="display:flex;align-items:center;gap:8px;">
-              <div class="progress-bar" style="width:80px"><div class="fill" style="width:${Math.min(pct,100)}%;background:${barColor}"></div></div>
-              <span style="font-size:0.8rem;font-weight:600;">${pct}%</span>
-            </div>
-          </td>
-          <td style="text-align:center;font-weight:700;${r.horaTope !== null ? 'color:var(--danger)' : ''}">${r.horaTope !== null ? r.horaTope + ':00' : '—'}</td>
-          <td><span class="badge ${badgeClass}">${estadoText}</span></td>
-        </tr>`;
-      }).join('');
-    }
-
-    // --- Resumen visual de topes ---
-    function renderResumenTopes(data) {
-      const container = document.getElementById('resumenTopesContainer');
-      if (data.length === 0) {
-        container.innerHTML = '<p style="color:var(--text-light)">Sin datos para mostrar.</p>';
-        return;
-      }
-
-      const fechas = [...new Set(data.map(r => r.fecha))].sort();
-
-      let html = '<div class="resumen-topes-grid" style="grid-template-columns: 180px 90px ' + fechas.map(() => '1fr').join(' ') + ';">';
-
-      // Header
+      var cols = fechas.length;
+      var style = 'grid-template-columns: 180px 100px repeat(' + cols + ', 1fr)';
+      var html = '<div class="resumen-topes-grid" style="' + style + '">';
       html += '<div class="cell cell-header cell-label">Producto / Categoría</div>';
       html += '<div class="cell cell-header">Tope/día</div>';
-      fechas.forEach(f => {
-        const d = new Date(f + 'T12:00:00');
-        const dayName = d.toLocaleDateString('es-CO', { weekday: 'short', day: 'numeric' });
-        html += `<div class="cell cell-header">${dayName}</div>`;
-      });
+      fechas.forEach(function(f) { html += '<div class="cell cell-header">' + f.slice(5) + '</div>'; });
 
-      // Agrupar por producto+categoría
-      const grupos = {};
-      data.forEach(r => {
-        const key = r.producto + '|' + r.categoria;
-        if (!grupos[key]) grupos[key] = { producto: r.producto, categoria: r.categoria, topeDiario: r.topeDiario, porFecha: {} };
-        grupos[key].porFecha[r.fecha] = r;
-      });
-
-      Object.values(grupos).forEach(g => {
-        html += `<div class="cell cell-label">${g.producto} — ${g.categoria}</div>`;
-        html += `<div class="cell" style="font-weight:600">${g.topeDiario ? Math.round(g.topeDiario) : '—'}</div>`;
-
-        fechas.forEach(f => {
-          const r = g.porFecha[f];
-          if (!r) {
-            html += '<div class="cell">—</div>';
-            return;
+      var keys = Object.keys(grouped).sort();
+      keys.forEach(function(key) {
+        var parts = key.split('|');
+        var topeForKey = null;
+        for (var i = 0; i < filtered.length; i++) {
+          if (filtered[i].producto === parts[0] && filtered[i].categoria === parts[1] && filtered[i].topeDiario) {
+            topeForKey = filtered[i].topeDiario; break;
           }
-
-          if (r.horaTope !== null) {
-            const intensity = r.horaTope <= 8 ? '#c62828' : r.horaTope <= 14 ? '#e65100' : '#f57c00';
-            html += `<div class="cell"><span class="hora-badge" style="background:${intensity};color:white;">${r.horaTope}:00</span></div>`;
+        }
+        html += '<div class="cell cell-label">' + parts[0] + ' / ' + parts[1] + '</div>';
+        html += '<div class="cell">' + (topeForKey || '-') + '</div>';
+        fechas.forEach(function(f) {
+          var hora = grouped[key][f];
+          if (hora !== undefined && hora !== null) {
+            var color = hora < 9 ? '#ffcdd2' : (hora < 14 ? '#fff9c4' : '#c8e6c9');
+            html += '<div class="cell"><span class="hora-badge" style="background:' + color + ';">' + hora + ':00</span></div>';
           } else {
-            const pct = r.porcentajeConsumo || 0;
-            if (pct > 70) {
-              html += `<div class="cell"><span class="hora-badge" style="background:#fff3e0;color:var(--warning);">${pct}%</span></div>`;
-            } else {
-              html += `<div class="cell"><span class="hora-badge" style="background:#e8f5e9;color:var(--success);">✓ ${pct}%</span></div>`;
-            }
+            html += '<div class="cell">—</div>';
           }
         });
       });
-
       html += '</div>';
-      container.innerHTML = html;
+      document.getElementById('resumenTopesContainer').innerHTML = html;
     }
 
-    // --- Gráficos acumulados mejorados ---
-    function renderCharts(data) {
-      const container = document.getElementById('chartContainer');
-      if (data.length === 0) {
-        container.innerHTML = '<p style="color:var(--text-light)">Sin datos para mostrar.</p>';
-        return;
-      }
-
-      let html = '';
-      data.forEach(r => {
-        if (!r.acumuladoPorHora || Object.keys(r.acumuladoPorHora).length === 0) return;
-
-        const maxAcum = Math.max(...Object.values(r.acumuladoPorHora));
-        const maxVal = Math.max(maxAcum, r.topeDiario || 0) * 1.15;
-
-        const topeY = r.topeDiario ? ((1 - r.topeDiario / maxVal) * 100) : null;
-
-        html += `<div class="chart-container">
-          <div class="chart-title">
-            <strong>${r.producto}</strong> — ${r.categoria}
-            <span style="color:var(--text-light);font-weight:400;font-size:0.8rem;margin-left:auto;">${r.fecha} | Clientes: ${r.totalClientes} | Tope: ${r.topeDiario ? Math.round(r.topeDiario) : '—'}</span>
-            ${r.horaTope !== null ? '<span class="badge badge-danger" style="margin-left:8px;">Agotado a las ' + r.horaTope + ':00</span>' : '<span class="badge badge-success" style="margin-left:8px;">Disponible</span>'}
-          </div>
-          <div class="chart-bar-area">`;
-
-        if (topeY !== null) {
-          html += `<div class="chart-tope-line" style="top:${topeY}%"></div>`;
-          html += `<div class="chart-tope-label" style="top:${topeY}%">Tope: ${Math.round(r.topeDiario)}</div>`;
+    function renderCharts(filtered) {
+      var top5 = filtered.filter(function(r){return r.topeDiario;}).slice(0, 5);
+      var html = '';
+      top5.forEach(function(r) {
+        var horas = Object.keys(r.acumuladoPorHora).map(Number).sort(function(a,b){return a-b;});
+        var maxVal = Math.max(r.topeDiario || 0, r.totalClientes);
+        html += '<div class="chart-container">';
+        html += '<div class="chart-title">📊 ' + r.producto + ' / ' + r.categoria + ' — ' + r.fecha + '</div>';
+        html += '<div class="chart-bar-area">';
+        if (r.topeDiario) {
+          var topePct = Math.min((r.topeDiario / maxVal) * 100, 100);
+          html += '<div class="chart-tope-line" style="bottom:' + topePct + '%;"></div>';
+          html += '<div class="chart-tope-label" style="bottom:' + topePct + '%;">T=' + r.topeDiario + '</div>';
         }
-
-        for (let h = 0; h <= 23; h++) {
-          const val = r.acumuladoPorHora[h] || 0;
-          if (val === 0) {
-            html += `<div class="chart-bar" style="height:2px;background:#e0e0e0;"></div>`;
-            continue;
-          }
-          const height = (val / maxVal) * 100;
-          const isTope = r.horaTope === h;
-          const isOver = r.topeDiario && val >= r.topeDiario;
-          const bg = isTope ? 'var(--danger)' : isOver ? '#ef5350' : 'var(--primary-light)';
-          html += `<div class="chart-bar" style="height:${height}%;background:${bg};" title="${h}:00 → ${val} clientes acum">
-            ${val > 0 ? '<span class=&quot;chart-bar-label&quot;>' + val + '</span>' : ''}
-          </div>`;
+        for (var h = 0; h <= 23; h++) {
+          var val = r.acumuladoPorHora[h] || 0;
+          if (val === 0) { html += '<div class="chart-bar" style="height:0;"></div>'; continue; }
+          var pct = (val / maxVal) * 100;
+          var barColor = (r.horaTope !== null && h >= r.horaTope) ? 'var(--danger)' : '#42A5F5';
+          html += '<div class="chart-bar" style="height:' + pct + '%;background:' + barColor + ';"><span class="chart-bar-label">' + val + '</span></div>';
         }
-
-        html += `</div>
-          <div class="chart-x-axis">`;
-        for (let h = 0; h <= 23; h++) {
-          html += `<span>${h}</span>`;
-        }
-        html += `</div>
-          <div class="chart-legend">
-            <div class="chart-legend-item"><div class="chart-legend-dot" style="background:var(--primary-light)"></div> Acumulado</div>
-            <div class="chart-legend-item"><div class="chart-legend-dot" style="background:var(--danger)"></div> Hora de agotamiento</div>
-            <div class="chart-legend-item"><div class="chart-legend-dot" style="background:transparent;border:2px dashed var(--danger)"></div> Línea de tope</div>
-          </div>
-        </div>`;
+        html += '</div>';
+        html += '<div class="chart-x-axis">';
+        for (var h2 = 0; h2 <= 23; h2++) html += '<span>' + h2 + '</span>';
+        html += '</div>';
+        html += '<div class="chart-legend"><div class="chart-legend-item"><div class="chart-legend-dot" style="background:#42A5F5;"></div>Acumulado</div><div class="chart-legend-item"><div class="chart-legend-dot" style="background:var(--danger);"></div>Post-tope</div></div>';
+        html += '</div>';
       });
-
-      container.innerHTML = html || '<p style="color:var(--text-light)">Selecciona filtros para ver el detalle.</p>';
+      document.getElementById('chartContainer').innerHTML = html || '<p style="color:var(--text-light);font-size:0.85rem;">Selecciona filtros para ver gráficos de las combinaciones con tope definido.</p>';
     }
 
-    // --- Simulador de escenarios ---
-    function runSimulation() {
-      const topeMensual = parseInt(document.getElementById('simTopeMensual').value) || 10000;
-      const diasMes = parseInt(document.getElementById('simDiasMes').value) || 30;
-
-      // Calcular nuevos topes con fórmula de 3 pasos (%Prod 3dec, %Cat 2dec, floor intermedio)
-      simulatedTopesMap = {};
-      Object.entries(PORCENTAJES).forEach(([key, info]) => {
-        const pctProdRounded = Math.round(info.pctProducto * 1000) / 1000;
-        const pctCatRounded = Math.round(info.pctCategoria * 100) / 100;
-        const cantMesProducto = Math.floor(topeMensual * pctProdRounded);
-        const cantMesCategoria = Math.floor(cantMesProducto * pctCatRounded);
-        const nuevoTopeDiario = Math.floor(cantMesCategoria / diasMes);
-        simulatedTopesMap[key] = nuevoTopeDiario;
-      });
-
-      // Activar simulación y re-renderizar todo
-      simulatedTopesActive = true;
-      renderAll();
+    // --- Helpers ---
+    function formGroup(label, type, value, attrs) {
+      return '<div class="form-group"><label>' + label + '</label><input type="' + type + '" value="' + value + '" ' + (attrs || '') + '></div>';
     }
 
-    function resetSimulation() {
-      simulatedTopesActive = false;
-      simulatedTopesMap = {};
-      document.getElementById('simTopeMensual').value = '10000';
-      document.getElementById('simDiasMes').value = '30';
-      renderAll();
+    function showToast(msg) {
+      var t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('visible');
+      setTimeout(function() { t.classList.remove('visible'); }, 2500);
     }
 
-    function renderSimulationTable() {
-      const container = document.getElementById('simResults');
-      const topeMensual = parseInt(document.getElementById('simTopeMensual').value) || 10000;
-      const diasMes = parseInt(document.getElementById('simDiasMes').value) || 30;
-      const topeDiarioGlobal = topeMensual / diasMes;
+    // --- Filter event listeners ---
+    document.getElementById('filterFecha').addEventListener('change', renderDashboard);
+    document.getElementById('filterProducto').addEventListener('change', renderDashboard);
+    document.getElementById('filterCategoria').addEventListener('change', renderDashboard);
+    document.getElementById('filterEstado').addEventListener('change', renderDashboard);
 
-      if (!simulatedTopesActive) {
-        container.innerHTML = '<p style="color:var(--text-light);font-size:0.85rem;">Ajusta los valores y haz clic en <strong>Simular</strong> para aplicar el escenario en todas las secciones del dashboard.</p>';
-        return;
-      }
-
-      // Usar datos filtrados
-      const filteredResults = applyFilters(getActiveData());
-
-      const simData = [];
-      Object.entries(PORCENTAJES).forEach(([key, info]) => {
-        const pctProdRounded = Math.round(info.pctProducto * 1000) / 1000;
-        const pctCatRounded = Math.round(info.pctCategoria * 100) / 100;
-        const cantMesOrig = Math.floor(10000 * pctProdRounded);
-        const cantMesCatOrig = Math.floor(cantMesOrig * pctCatRounded);
-        const topeDiarioOriginal = Math.floor(cantMesCatOrig / 30);
-        const nuevoTopeDiario = simulatedTopesMap[key] || 0;
-
-        const registros = filteredResults.filter(r => r.producto === info.producto && r.categoria === info.categoria);
-        if (registros.length === 0) return;
-
-        const consumoPromedio = Math.round(registros.reduce((s, r) => s + r.totalClientes, 0) / registros.length);
-
-        let nuevaHoraTope = null;
-        for (const reg of registros) {
-          let horaTopeReg = null;
-          const horasOrdenadas = Object.keys(reg.acumuladoPorHora).map(Number).sort((a, b) => a - b);
-          for (const h of horasOrdenadas) {
-            const acum = reg.acumuladoPorHora[h];
-            if (acum >= Math.floor(nuevoTopeDiario) && horaTopeReg === null) {
-              horaTopeReg = h;
-            }
-          }
-          if (horaTopeReg !== null) {
-            if (nuevaHoraTope === null || horaTopeReg < nuevaHoraTope) {
-              nuevaHoraTope = horaTopeReg;
-            }
-          }
-        }
-
-        const diff = nuevoTopeDiario - topeDiarioOriginal;
-
-        simData.push({
-          producto: info.producto,
-          categoria: info.categoria,
-          topeOriginal: Math.round(topeDiarioOriginal * 100) / 100,
-          topeNuevo: Math.round(nuevoTopeDiario * 100) / 100,
-          diff: Math.round(diff * 100) / 100,
-          consumoPromedio,
-          pctConsumo: nuevoTopeDiario > 0 ? Math.round((consumoPromedio / nuevoTopeDiario) * 100) : 0,
-          nuevaHoraTope,
-          diasAnalizados: registros.length
-        });
-      });
-
-      const fechaFiltro = document.getElementById('filterFecha').value;
-      const fechasActivas = fechaFiltro !== 'all' ? fechaFiltro : DASHBOARD_DATA.fechas.join(', ');
-
-      let html = `<p style="font-size:0.85rem;margin-bottom:12px;">
-        <strong>Escenario activo:</strong> Tope mensual = <strong>${topeMensual.toLocaleString()}</strong> | Días = <strong>${diasMes}</strong> | Tope diario global = <strong>${Math.round(topeDiarioGlobal * 100) / 100}</strong> | Fechas: <strong>${fechasActivas}</strong>
-        <span class="badge badge-warning" style="margin-left:8px;">Aplicado en todas las secciones</span>
-      </p>`;
-
-      if (simData.length === 0) {
-        html += '<p style="color:var(--text-light);">No hay datos para los filtros seleccionados.</p>';
-        container.innerHTML = '<div class="sim-results">' + html + '</div>';
-        return;
-      }
-
-      html += '<table><thead><tr><th>Producto</th><th>Categoría</th><th>Tope Original</th><th>Tope Simulado</th><th>Δ Diferencia</th><th>Consumo Prom.</th><th>% Consumo</th><th>Hora Agotamiento</th><th>Días</th></tr></thead><tbody>';
-
-      simData.forEach(s => {
-        const diffClass = s.diff > 0 ? 'sim-diff-positive' : s.diff < 0 ? 'sim-diff-negative' : '';
-        const diffSign = s.diff > 0 ? '+' : '';
-        const pctColor = s.pctConsumo >= 100 ? 'var(--danger)' : s.pctConsumo > 70 ? 'var(--warning)' : 'var(--success)';
-
-        html += `<tr>
-          <td><strong>${s.producto}</strong></td>
-          <td>${s.categoria}</td>
-          <td style="text-align:center">${s.topeOriginal}</td>
-          <td style="text-align:center;font-weight:700">${s.topeNuevo}</td>
-          <td style="text-align:center" class="${diffClass}">${diffSign}${s.diff}</td>
-          <td style="text-align:center">${s.consumoPromedio}</td>
-          <td style="text-align:center;color:${pctColor};font-weight:600">${s.pctConsumo}%</td>
-          <td style="text-align:center;font-weight:700;${s.nuevaHoraTope !== null ? 'color:var(--danger)' : 'color:var(--success)'}">${s.nuevaHoraTope !== null ? s.nuevaHoraTope + ':00' : '✓ No se agota'}</td>
-          <td style="text-align:center">${s.diasAnalizados}</td>
-        </tr>`;
-      });
-
-      html += '</tbody></table>';
-      container.innerHTML = '<div class="sim-results">' + html + '</div>';
-    }
-
-    // --- Event Listeners ---
-    function onFiltersChange() {
-      renderAll();
-    }
-    document.getElementById('filterFecha').addEventListener('change', onFiltersChange);
-    document.getElementById('filterProducto').addEventListener('change', onFiltersChange);
-    document.getElementById('filterCategoria').addEventListener('change', onFiltersChange);
-    document.getElementById('filterEstado').addEventListener('change', onFiltersChange);
-
-    // Render inicial
-    renderAll();
+    // --- Init ---
+    renderTopesPanel();
+    renderDashboard();
   </script>
 </body>
 </html>
