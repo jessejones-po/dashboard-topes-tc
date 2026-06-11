@@ -470,12 +470,24 @@ function generateEjecutivoHTML(tablaData, fechas, transactionCounts) {
       var filtro = document.getElementById('filtro-fecha');
       var selected = filtro.value;
 
-      // Update sub-headers (tope global por fecha)
+      // Update sub-headers (tope global por fecha) and visibility
+      var headerCells1 = table.querySelectorAll('thead tr:first-child th[data-fecha]');
       var subHeaderCells = table.querySelectorAll('thead tr:nth-child(2) th[data-fecha]');
+      var colSubCells = table.querySelectorAll('thead tr:nth-child(3) th[data-fecha]');
+
+      headerCells1.forEach(function(cell) {
+        var f = cell.getAttribute('data-fecha');
+        cell.style.display = (selected === 'todas' || f === selected) ? '' : 'none';
+      });
       subHeaderCells.forEach(function(cell) {
         var f = cell.getAttribute('data-fecha');
         var tg = calcularTopeDiarioGlobalClient(f);
         cell.textContent = 'Tope global: ' + tg + '/día';
+        cell.style.display = (selected === 'todas' || f === selected) ? '' : 'none';
+      });
+      colSubCells.forEach(function(cell) {
+        var f = cell.getAttribute('data-fecha');
+        cell.style.display = (selected === 'todas' || f === selected) ? '' : 'none';
       });
 
       rows.forEach(function(row, rowIdx) {
@@ -727,6 +739,7 @@ function generateEjecutivoHTML(tablaData, fechas, transactionCounts) {
 
     // --- Init ---
     renderTopesPanel();
+    recalculateAndRender();
 
   })();
   </script>
